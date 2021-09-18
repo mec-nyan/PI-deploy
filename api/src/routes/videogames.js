@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const Videogame = require('../models/Videogame');
+const Videogame = require('../models/videogame');
 
 
 router.get('/:id', async function(req, res) {
@@ -9,6 +9,7 @@ router.get('/:id', async function(req, res) {
   // Incluir los géneros asociados
   let { id } = req.params;
 
+  res.json({route: 'videogames', params: {id}});
 });
 
 
@@ -24,4 +25,7 @@ router.get('/', async function(req, res) {
   // Obtener un listado de los videojuegos
   // Debe devolver solo los datos necesarios para la ruta principal
   }
+  res.json({route: 'videogames'});
 });
+
+module.exports = router;

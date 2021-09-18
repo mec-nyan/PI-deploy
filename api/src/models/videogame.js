@@ -2,7 +2,7 @@ const { DataTypes } = require('sequelize');
 
 // Game
 module.exports = (sequelize) => {
-  sequelize.define('Game', {
+  sequelize.define('videogame', {
     id: {
       type: DataTypes.STRING,
       primaryKey: true,
