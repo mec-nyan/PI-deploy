@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const Videogame = require('../models/videogame');
+const { Videogame, Genre } = require('../db');
 
 
 router.get('/:id', async function(req, res) {
@@ -8,8 +8,11 @@ router.get('/:id', async function(req, res) {
   // Debe traer solo los datos pedidos en la ruta de detalle de videojuego
   // Incluir los géneros asociados
   let { id } = req.params;
+  console.log(id);
+  console.log(typeof id);
+  let game = await Videogame.findByPk(id, { include: Genre });
 
-  res.json({route: 'videogames', params: {id}});
+  res.json({ route: 'videogames', params: {id}, game, });
 });
 
 
