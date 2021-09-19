@@ -29,11 +29,18 @@ router.get('/', async function(req, res) {
     let names = games.map( g => g.slug );
     return res.json({matches: names});
   } else {
-  // GET /videogames:
-  // Obtener un listado de los videojuegos
-  // Debe devolver solo los datos necesarios para la ruta principal
+    // GET /videogames:
+    // Obtener un listado de los videojuegos
+    // Debe devolver solo los datos necesarios para la ruta principal
+    let games = await Videogame.findAll({ attributes: ['id', 'name'], include: Genre });
+    let output = [];
+    games.forEach( g => {
+      let { id, name, slug, genres } = g;
+      genres = genres.map( g => ({ id: g.id, name: g.name }));
+      output.push({ id, name, slug, genres });
+    });
+    return res.json({ output });
   }
-  return res.json({route: 'videogames'});
 });
 
 module.exports = router;
