@@ -3,10 +3,10 @@ const { DataTypes } = require('sequelize');
 // Game
 module.exports = (sequelize) => {
   sequelize.define('videogame', {
-    id: {
-      type: DataTypes.STRING,
-      primaryKey: true,
-    },
+    //id: {
+      //type: DataTypes.INTEGER,
+      //primaryKey: true,
+    //},
     name: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -20,6 +20,10 @@ module.exports = (sequelize) => {
     },
     rating: {
       type: DataTypes.FLOAT,
+    },
+    rawgId: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
     },
     /*
      * creo que platforms debe tener su propia tabla

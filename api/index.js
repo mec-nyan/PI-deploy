@@ -33,7 +33,7 @@ conn.sync({ force: true }).then(() => {
   const { KEY } = process.env;
   const url = ' https://api.rawg.io/api/games';
   const { Videogame, Genre, Platform } = require('./src/db');
-  const MAX_GAMES = 10;
+  const MAX_GAMES = 50;
 
   let count = 0; 
   let i = 1;
@@ -48,7 +48,7 @@ conn.sync({ force: true }).then(() => {
       // >> Create the game entry on the table
       let game = await Videogame.create({
         // >> The ids on my table aren't the same as in the rawg api
-        id: `local_${id}`, name, released, rating, description 
+        rawgId: id, name, released, rating, description 
       });
       ++count;
       // >> Get list of genres
