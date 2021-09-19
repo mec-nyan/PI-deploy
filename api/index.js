@@ -29,7 +29,7 @@ conn.sync({ force: true }).then(() => {
 }).then(async function() { // >> I added this '.then()'
   // >> Just for testing, I'm adding some games here.
   // >> I can 'preload' the games here, up to MAX_GAMES
-  const MAX_GAMES = 10;
+  const MAX_GAMES = 1;
   let count = 0; 
   let id = 1;
   while (count < MAX_GAMES) {
