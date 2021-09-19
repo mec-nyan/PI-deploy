@@ -36,7 +36,7 @@ router.get('/', async function(req, res) {
     let output = [];
     games.forEach( g => {
       let { id, name, slug, genres } = g;
-      genres = genres.map( g => ({ id: g.id, name: g.name }));
+      genres = genres.map( g => ({ id: g.id, name: g.name, slug: g.slug }));
       output.push({ id, name, slug, genres });
     });
     return res.json({ output });

@@ -38,6 +38,7 @@ async function bindGenre(game, genres) {
       where: {
         id: gd.id,
         name: gd.name,
+        slug: gd.slug,
       }
     });
     await game.addGenre(genre); // Is 'await' necesary?
@@ -47,12 +48,13 @@ async function bindGenre(game, genres) {
 
 async function bindPlatform(game, platforms) {
   // >> Get list of platforms
-  let platformData = platforms.map( p => ({ id: p.platform.id, name: p.platform.name }));
+  let platformData = platforms.map( p => ({ id: p.platform.id, name: p.platform.name, slug: p.platform.slug }));
   for (let pd of platformData) {
     let [ platform, created ] = await Platform.findOrCreate({
       where: {
         id: pd.id,
         name: pd.name,
+        slug: pd.slug,
       }
     });
     await game.addPlatform(platform); // Is 'await' necesary?

@@ -30,7 +30,7 @@ router.get('/:_id', async function(req, res) {
 
   if (game) { // >> game will be null if findByPk fails
     let { id, name, released, rating, genres } = game;
-    genres = genres.map( g => ({ id: g.id, name: g.name }));
+    genres = genres.map( g => ({ id: g.id, name: g.name, slug: g.slug }));
     return res.json({ route: 'videogames', params: {id}, details: { id, name, released, rating, genres } });
   } else {
     return res.status(404).json({msg: 'shit happens bro'});
