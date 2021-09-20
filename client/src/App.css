@@ -1,38 +1,114 @@
-.App {
-  text-align: center;
+*
+{
+  margin: 0;
+  padding: 0;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.App
+{
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100vh;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
+header
+{
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  background-color: rgba(0, 0, 0, 0.5);
+  box-shadow: 2px 2px 3px black;
+  border-bottom-right-radius: 40px;
+  z-index: 1;
+}
+h1
+{
+  text-align: left;
+  font-size: 16px;
+  font-weight: normal;
+  letter-spacing: 10px;
+  margin: 20px 30px 20px;
+  color: #fff;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.Slider
+{
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  position: relative;
+}
+
+.big
+{
+  width: 500%;
+  height: 100vh;
+  display: flex;
+  flex-direction: row;
+  position: absolute;
+  animation: slide 20s ease-out infinite;
+}
+
+.slide:nth-child(1) 
+{
+  width: 20%;
+  height: 100vh;
+  background-image: url('./img/game_bg_002.jpg');
+  background-position: center;
+  background-size: cover;
+}
+
+.slide:nth-child(2) 
+{
+  width: 20%;
+  height: 100vh;
+  background-image: url('./img/game_bg_013.jpg');
+  background-position: center;
+  background-size: cover;
+}
+
+.slide:nth-child(3) 
+{
+  width: 20%;
+  height: 100vh;
+  background-image: url('./img/game_bg_010.jpg');
+  background-position: center;
+  background-size: cover;
+}
+
+.slide:nth-child(4) 
+{
+  width: 20%;
+  height: 100vh;
+  background-image: url('./img/game_bg_005.jpg');
+  background-position: center;
+  background-size: cover;
+}
+
+.slide:nth-child(5) 
+{
+  width: 20%;
+  height: 100vh;
+  background-image: url('./img/game_bg_017.jpg');
+  background-position: center;
+  background-size: cover;
+}
+
+@keyframes slide
+{
+  0% { left: 0%; }
+  16% { left: 0%; }
+  20% { left: -100%; }
+  36% { left: -100%; }
+  40% { left: -200%; }
+  56% { left: -200%; }
+  60% { left: -300%; }
+  76% { left: -300%; }
+  80% { left: -400%; }
+  96% { left: -400%; }
+  100% { left: 0%; }
 }
