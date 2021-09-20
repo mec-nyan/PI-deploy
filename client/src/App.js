@@ -3,7 +3,18 @@ import './App.css';
 function App() {
   return (
     <div className="App">
-      <h1>Henry Videogames</h1>
+      <header>
+        <h1>MEC</h1>
+      </header>
+      <div className="Slider">
+        <div class="big">
+          <div class="slide"></div>
+          <div class="slide"></div>
+          <div class="slide"></div>
+          <div class="slide"></div>
+          <div class="slide"></div>
+        </div>
+      </div>
     </div>
   );
 }
