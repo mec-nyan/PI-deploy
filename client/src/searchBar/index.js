@@ -1,4 +1,5 @@
 import './search.css';
+import logo from './logoMec.png';
 
 
 function SearchBar() {
@@ -6,11 +7,11 @@ function SearchBar() {
   return (
     <div className='search'>
 
-      <span>MEC</span>
+      <img src={logo} alt='MEC' />
 
       <form className='searchForm'>
-        <input type='text' id='isearch' name='isearch' placeholder='fuck' />
-        <label htmlFor='isearch'>Search</label>
+        <input type='text' id='isearch' name='isearch' placeholder='search for games ...' />
+        <label htmlFor='isearch'>Find it!</label>
       </form>
 
     </div>
