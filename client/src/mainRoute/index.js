@@ -1,6 +1,5 @@
 import './main.css';
 import { NavLink } from 'react-router-dom';
-import SearchBar from '../searchBar';
 
 
 function MainPage() {
@@ -8,20 +7,14 @@ function MainPage() {
   return (
     <div className='main'>
 
-      <SearchBar />
-
       <h1>Main Page</h1>
 
-      <NavLink to='/detail'>
+      <NavLink to='/main/detail'>
         <button>Game detail</button>
       </NavLink>
 
-      <NavLink to='/create'>
+      <NavLink to='/main/create'>
         <button>New game</button>
-      </NavLink>
-
-      <NavLink to='/'>
-        <button>Back</button>
       </NavLink>
 
     </div> 

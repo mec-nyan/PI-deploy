@@ -3,30 +3,33 @@ import Home from './homePage';
 import Main from './mainRoute';
 import Details from './gameDetail';
 import Create from './createGame';
-import { Switch, Route } from 'react-router-dom';
+import SearchBar from './searchBar';
+import { Switch, Route, Fade } from 'react-router-dom';
 
 
 function App() {
   return (
-    <Switch>
+    <div className='App'>
       <Route exact path='/'>
         <Home />
+      </Route>
+
+      <Route path='/main'>
+        <SearchBar />
       </Route>
 
       <Route exact path='/main'>
         <Main />
       </Route> 
 
-      <Route exact path='/detail'>
+      <Route exact path='/main/detail'>
         <Details />
       </Route> 
 
-      <Route exact path='/create'>
+      <Route exact path='/main/create'>
         <Create />
       </Route> 
-
-    <Home />
-    </Switch>
+    </div>
   );
 }
 

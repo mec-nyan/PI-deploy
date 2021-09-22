@@ -10,8 +10,13 @@
   height: 100vh;
   margin: 0px;
   padding: 0px;
-  background-color: #444;
-  color: #ddd;
+  background-color: transparent;
+  color: #aaa;
   display: flex;
   flex-direction: column;
+}
+
+h1 
+{
+  color: #aaa;
 }
