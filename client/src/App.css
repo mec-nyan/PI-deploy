@@ -19,11 +19,14 @@ header
   position: absolute;
   top: 0;
   left: 0;
+  width: 100%;
+  height: 100vh;
   display: block;
-  background-color: rgba(0, 0, 0, 0.5);
-  box-shadow: 2px 2px 3px black;
-  border-bottom-right-radius: 40px;
+  background-image: url('./img/frameMecGames.png');
+  background-position: top;
+  background-size: cover;
   z-index: 1;
+
 }
 h1
 {
@@ -50,7 +53,7 @@ h1
   display: flex;
   flex-direction: row;
   position: absolute;
-  animation: slide 20s ease-out infinite;
+  animation: slide 30s ease-out infinite;
 }
 
 .slide:nth-child(1) 
@@ -58,7 +61,7 @@ h1
   width: 20%;
   height: 100vh;
   background-image: url('./img/game_bg_002.jpg');
-  background-position: center;
+  background-position: top;
   background-size: cover;
 }
 
@@ -67,7 +70,7 @@ h1
   width: 20%;
   height: 100vh;
   background-image: url('./img/game_bg_013.jpg');
-  background-position: center;
+  background-position: top;
   background-size: cover;
 }
 
@@ -76,7 +79,7 @@ h1
   width: 20%;
   height: 100vh;
   background-image: url('./img/game_bg_010.jpg');
-  background-position: center;
+  background-position: top;
   background-size: cover;
 }
 
@@ -85,7 +88,7 @@ h1
   width: 20%;
   height: 100vh;
   background-image: url('./img/game_bg_005.jpg');
-  background-position: center;
+  background-position: top;
   background-size: cover;
 }
 
@@ -93,8 +96,8 @@ h1
 {
   width: 20%;
   height: 100vh;
-  background-image: url('./img/game_bg_017.jpg');
-  background-position: center;
+  background-image: url('./img/game_bg_016.jpg');
+  background-position: top;
   background-size: cover;
 }
 
@@ -111,4 +114,65 @@ h1
   80% { left: -400%; }
   96% { left: -400%; }
   100% { left: 0%; }
+}
+
+.enterBtn 
+{
+  display: block;
+  height: 15%;
+  width: 100%;
+  position: absolute;
+  bottom: 5%;
+  z-index: 3;
+  display: flex;
+  justify-content: center;
+}
+
+.enterBtn img
+{
+  height: 100%;
+  opacity: 0.8;
+  transition: all 400ms;
+}
+
+.enterBtn img:hover
+{
+  transform: scale(1.2, 1.2);
+  opacity: 1;
+}
+
+.magic
+{
+  position: absolute;
+  bottom: 0px;
+  width: 100%;
+  height: 35%;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  z-index: 2; 
+}
+
+.magic img 
+{
+  height: 180%;
+  position: relative;
+  animation: spin 30s linear infinite;
+}
+
+.magenta 
+{
+  left: 5px;
+}
+
+.blue
+{
+  left: -5px;
+}
+
+
+@keyframes spin
+{
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
