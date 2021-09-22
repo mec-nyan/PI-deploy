@@ -2,10 +2,11 @@ import './home.css';
 import btn from './img/enterButton.png';
 import magicBlue from './img/magicCircleBlue.png';
 import magicMagenta from './img/magicCircleMagenta.png';
+import { NavLink } from 'react-router-dom';
 
 function Home() {
   return (
-    <div className="App">
+    <div className="home">
       <header>
       </header>
       <div className='magic'>
@@ -15,7 +16,9 @@ function Home() {
         <img className='blue' src={magicBlue} alt='' />
       </div>
       <div className='enterBtn'>
-        <img src={btn} alt='' />
+        <NavLink to='/main'>
+          <img src={btn} alt='' />
+        </NavLink>
       </div>
       <div className="Slider">
         <div class="big">
