@@ -1,0 +1,42 @@
+.search 
+{
+  margin: 0px;
+  padding: 20px;
+  background-color: #222;
+  border-bottom: 1px solid #555;
+  color: #ddd;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.searchForm 
+{
+  width: 100%;
+  text-align: right;
+}
+
+#isearch 
+{
+  margin: 0px 15px;
+  background-color: #444;
+  width: 50%;;
+  border: none;
+  height: 26;
+  border-radius: 18px;
+  padding: 5px 10px;
+  color: #ccc;
+  transition: all 300ms;
+}
+
+#isearch:focus 
+{
+  background-color: white;
+  color: #222;
+}
+
+#isearch:focus::placeholder 
+{
+  color: tomato;
+}
