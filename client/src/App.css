@@ -8,6 +8,7 @@ body
 {
   margin: 0px;
   padding: 0px;
+  background-color: #181818;
 }
 
 .App
@@ -16,8 +17,11 @@ body
   padding: 0px;
   width: 100%;
   min-height: 100vh;
-  background-color: #181818;
+  background-image: url('./nierAutomata.png');
+  background-size: cover;
+  background-attachment: fixed;
 }
+
 
 .content 
 {

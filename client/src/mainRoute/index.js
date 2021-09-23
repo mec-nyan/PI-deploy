@@ -9,17 +9,14 @@ function MainPage() {
   return (
     <div className='main'>
 
-      <h1>Main Page</h1>
 
-      <Card />
-
-      <NavLink to='/main/detail'>
-        <button>Game detail</button>
-      </NavLink>
-
-      <NavLink to='/main/create'>
-        <button>New game</button>
-      </NavLink>
+      <Card genre={'Action, RPG'} rating='1.4' />
+      <Card genre={'Action'} rating='1.4' />
+      <Card genre={'Action, RPG, Adventure'} rating='1.4' />
+      <Card genre={'Action, Romance'} rating='1.4' />
+      <Card genre={'Action, RPG'} rating='1.4' />
+      <Card genre={'Action, Indie'} rating='1.4' />
+      <Card genre={'Action, RPG'} rating='1.4' />
 
     </div> 
   );

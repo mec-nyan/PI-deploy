@@ -1,7 +1,8 @@
 .card
 {
-  width: 240px;
-  height: 360px;
+  width: 250px;
+  margin: 10px;
+  /*height: 360px;*/
   border-radius: 10px;
   border: 1px solid #444;
   background-color: #1f1f1f;
@@ -27,14 +28,59 @@
 
 .card h3 
 {
-  margin: 16px 0px;
+  margin: 10px 0px;
   font-weight: lighter;
   font-size: 20px;
 }
 .card img 
 {
-  min-width: 200px;
+  min-width: 250px;
   max-height: 150px;
 
 }
 
+.data 
+{
+  font-size: 12px;
+  border-collapse: collapse;
+  width: 90%;
+  margin: 10px 5%;
+}
+
+.data tr 
+{
+  border-bottom: 1px solid #333;
+}
+
+.data td 
+{
+  padding: 10px 0px;
+}
+
+.data td:first-child 
+{
+  width: 30%;
+  color: #555;
+}
+
+.data td:nth-child(2)
+{
+  text-align: right;
+}
+
+#rating 
+{
+  color: #5599FF;
+}
+
+.more 
+{
+  text-decoration: none;
+  margin-top: 10px;
+  text-align: center;
+  color: #892CA0;
+  background-image: linear-gradient(to bottom, #181818, #111);
+  padding: 10px 20px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
