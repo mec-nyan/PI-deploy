@@ -13,7 +13,16 @@
   background-color: transparent;
 }
 
-.cards 
+.panel 
+{
+  width: 100%;
+  margin-top: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.mainView 
 {
   background-color: transparent;
   width: 100%;
@@ -29,18 +38,39 @@
 
 .buttons 
 {
-  width: 100%;
   padding: 10px;
   display: flex;
   flex: row;
   justify-content: flex-end;
 }
 
-.selector 
+.selector, #newgame
 {
   padding: 10px 30px;
   margin: 20px;
   background-color: #333;
   color: #666;
   border-radius: 4px;
+  transition: all 400ms;
 }
+
+.selector:hover
+{
+  background-color: #444;
+  color: #999;
+}
+
+#newgame 
+{
+  border: none;
+  background-color: #672178;
+  color: #d0d0d0;
+  text-decoration: none;
+  transition: all 400ms;
+}
+
+#newgame:hover
+{
+  background-color: #892CA0;
+}
+

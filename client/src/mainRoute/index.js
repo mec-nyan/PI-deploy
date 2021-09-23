@@ -9,13 +9,18 @@ function MainPage() {
   return (
     <div className='main'>
 
-      <div className='buttons'>
-        <div className='selector'>Order by: Name</div>
-        <div className='selector'>Ascendent</div>
-        <div className='selector'>Filter</div>
+      <div className='panel'>
+        <div className='buttons'>
+          <NavLink id='newgame' to='/main/create'>Add new game</NavLink>
+        </div>
+        <div className='buttons'>
+          <div className='selector'>Order by: Name</div>
+          <div className='selector'>Ascendent</div>
+          <div className='selector'>Filter</div>
+        </div>
       </div>
 
-      <div className='cards'>
+      <div className='mainView'>
         <Card genre={'Action, RPG'} rating='1.4' />
         <Card genre={'Action'} rating='1.4' />
         <Card genre={'Action, RPG, Adventure'} rating='1.4' />

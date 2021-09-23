@@ -6,7 +6,8 @@ import Create from './createGame';
 import SearchBar from './searchBar';
 import SideBar from './sideBar';
 import Footer from './footer';
-import { Switch, Route, Fade } from 'react-router-dom';
+import { Route, NavLink } from 'react-router-dom';
+import logo from './logoMecFull.png';
 
 
 function App() {
@@ -18,6 +19,11 @@ function App() {
 
       <Route path='/main'>
         <SearchBar />
+
+        <NavLink to='/'>
+          <img id='logo' src={logo} alt='MEC' />
+        </NavLink>
+
         <div className='content'>
           <SideBar />
 
