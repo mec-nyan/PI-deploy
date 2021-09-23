@@ -2,6 +2,7 @@ import './main.css';
 import { NavLink } from 'react-router-dom';
 import SideBar from '../sideBar';
 import Card from '../card';
+import Selector from '../selector';
 
 
 function MainPage() {
@@ -14,7 +15,7 @@ function MainPage() {
           <NavLink id='newgame' to='/main/create'>Add new game</NavLink>
         </div>
         <div className='buttons'>
-          <div className='selector'>Order by: Name</div>
+          <Selector />
           <div className='selector'>Ascendent</div>
           <div className='selector'>Filter</div>
         </div>

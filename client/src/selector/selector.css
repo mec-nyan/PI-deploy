@@ -1,0 +1,61 @@
+.selector
+{
+  padding: 10px 30px;
+  margin: 20px;
+  background-color: #333;
+  color: #666;
+  border-radius: 4px;
+  transition: all 400ms;
+  position: relative;
+}
+
+.selector:hover
+{
+  background-color: #444;
+  color: #999;
+}
+
+.popup
+{
+  list-style: none;
+  background-color: #ccc;
+  border-radius: 4px;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: auto;
+  text-align: left;
+  transition: all 400ms;
+}
+
+.selection 
+{
+  padding: 10px;
+  border-radius: 4px;
+}
+
+.selection:hover 
+{
+  background-color: #ddd;
+}
+
+.selected 
+{
+  color: #222;
+}
+
+.selected::after 
+{
+  content: '<<';
+  position: absolute;
+  right: 0px;
+  margin-right: 10px;
+  color: #672178;
+}
+
+.hidden
+{
+  height: 0%;
+  overflow: hidden;
+}
