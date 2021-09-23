@@ -9,14 +9,22 @@ function MainPage() {
   return (
     <div className='main'>
 
+      <div className='buttons'>
+        <div className='selector'>Order by: Name</div>
+        <div className='selector'>Ascendent</div>
+        <div className='selector'>Filter</div>
+      </div>
 
-      <Card genre={'Action, RPG'} rating='1.4' />
-      <Card genre={'Action'} rating='1.4' />
-      <Card genre={'Action, RPG, Adventure'} rating='1.4' />
-      <Card genre={'Action, Romance'} rating='1.4' />
-      <Card genre={'Action, RPG'} rating='1.4' />
-      <Card genre={'Action, Indie'} rating='1.4' />
-      <Card genre={'Action, RPG'} rating='1.4' />
+      <div className='cards'>
+        <Card genre={'Action, RPG'} rating='1.4' />
+        <Card genre={'Action'} rating='1.4' />
+        <Card genre={'Action, RPG, Adventure'} rating='1.4' />
+        <Card genre={'Action, Romance'} rating='1.4' />
+        <Card genre={'Action, RPG'} rating='1.4' />
+        <Card genre={'Action, Indie'} rating='1.4' />
+        <Card genre={'Action, RPG'} rating='1.4' />
+        <Card genre={'Action, RPG'} rating='1.4' />
+      </div>
 
     </div> 
   );
