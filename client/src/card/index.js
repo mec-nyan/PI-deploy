@@ -8,9 +8,10 @@ function Card() {
   return (
     <div className='card'>
 
+      <h3>Nier Automata</h3>
+
       <img src={example} alt='' />
 
-      <h2>Nier Automata</h2>
       <p>Some text</p>
 
     </div>

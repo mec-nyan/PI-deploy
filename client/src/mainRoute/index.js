@@ -1,5 +1,6 @@
 import './main.css';
 import { NavLink } from 'react-router-dom';
+import SideBar from '../sideBar';
 import Card from '../card';
 
 
@@ -10,6 +11,8 @@ function MainPage() {
 
       <h1>Main Page</h1>
 
+      <Card />
+
       <NavLink to='/main/detail'>
         <button>Game detail</button>
       </NavLink>
@@ -17,8 +20,6 @@ function MainPage() {
       <NavLink to='/main/create'>
         <button>New game</button>
       </NavLink>
-
-      <Card />
 
     </div> 
   );
