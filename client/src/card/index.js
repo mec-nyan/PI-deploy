@@ -1,4 +1,5 @@
 import './card.css';
+import example from './img/nierAutomata.jpg';
 import { NavLink } from 'react-router-dom';
 
 
@@ -7,11 +8,10 @@ function Card() {
   return (
     <div className='card'>
 
-      <h1>New game</h1>
+      <img src={example} alt='' />
 
-      <NavLink to='/main'>
-        <button>Back</button> 
-      </NavLink>
+      <h2>Nier Automata</h2>
+      <p>Some text</p>
 
     </div>
   );
