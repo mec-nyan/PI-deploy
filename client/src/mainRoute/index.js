@@ -2,6 +2,7 @@ import './main.css';
 import { NavLink } from 'react-router-dom';
 import Card from '../card';
 import Selector from '../selector';
+import ArrowSelector from '../arrowSelector';
 
 
 function MainPage() {
@@ -15,6 +16,7 @@ function MainPage() {
         </div>
         <div className='buttons'>
           <Selector text='Order by:' options={['a-z', 'rating']} />
+          <ArrowSelector />
           <Selector text='Filter by:' options={['genre', 'created by']} />
         </div>
       </div>
