@@ -65,7 +65,7 @@
 
 .selected::after 
 {
-  content: '<<';
+  content: url('./checked.png');
   position: absolute;
   right: 0px;
   margin-right: 10px;
