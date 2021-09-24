@@ -35,4 +35,10 @@ body
   position: absolute;
   top: 0px;
   left: 0px;
+  transition: all 400ms;
+}
+
+#logo:hover 
+{
+  transform: scale(1.1, 1.1);
 }

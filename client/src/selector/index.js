@@ -2,11 +2,11 @@ import './selector.css';
 import { useState } from 'react';
 
 
-function Selector() {
+function Selector({ text, options }) {
 
   const [ state, setState ] = useState({
     hidden: 'hidden',
-    selection: 'A-Z',
+    selection: options[0],
   });
 
   function showPopup() {
@@ -23,10 +23,14 @@ function Selector() {
 
   return (
     <div className='selector' >
-      <span className='visible' onClick={showPopup}>Order by: {state.selection}</span>
+      <div className='text'>
+        <span onClick={showPopup}>{text} {state.selection}</span>
+      </div>
+
       <div className={state.hidden + ' popup'}>
-        <div className={'selection' + (state.selection === 'A-Z' ? ' selected': '')} onClick={e => Select(e)}>A-Z</div>
-        <div className={'selection' + (state.selection === 'Rating' ? ' selected': '')} onClick={e => Select(e)}>Rating</div>
+        {options.map( o => 
+          <div className={'selection' + (state.selection === o ? ' selected': '')} onClick={e => Select(e)}>{o}</div>
+        )}
       </div>
     </div>
   );
