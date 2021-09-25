@@ -34,7 +34,11 @@
   position: absolute;
   padding: 20px;
   margin: 0px;
+  letter-spacing: 4px;
   border-bottom-right-radius: 35px;
+  border-bottom: 1px solid #ddd;
+  border-right: 1px solid #fff;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
   top: 0px;
   left: 0px;
 }
@@ -42,15 +46,6 @@
 .artwork
 {
   width: 100%;
-}
-
-
-.description 
-{
-  padding: 40px;
-  color: #aaa;
-  font-size: 18px;
-  margin-top: 0px;
 }
 
 .floatingButton 
@@ -119,4 +114,44 @@
   font-weight: bold;
 }
 
+.info 
+{
+  margin: 40px;
+  color: #aaa;
+  display: flex;
+}
 
+.info table 
+{
+  border-collapse: collapse;
+  border: 1px solid #444;
+  width: 200px;
+  margin: 0px 20px;
+}
+
+.info table tr.title 
+{
+  background-color: #222;
+}
+
+.info table tr td
+{
+  border-bottom: 1px solid #555;
+  padding: 10px;
+  font-size: 14px;
+}
+
+.description 
+{
+  margin: 0px 20px;
+}
+
+.info p::first-line 
+{
+  color: #eee;
+}
+
+.info p::first-letter 
+{
+  color: #BC5FD3;
+}

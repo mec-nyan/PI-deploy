@@ -30,9 +30,28 @@ function GameDetail() {
           </div>
         </div>
 
-        <div className='description'>
-          {description}
+        <div className='info'>
+          <table>
+            <tr className="title">
+              <td>Released</td>
+            </tr>
+            <tr>
+              <td>{released}</td>
+            </tr>
+            <tr className="title">
+              <td>Genre</td>
+            </tr>
+            {genres.map( g => (<tr><td>{g}</td></tr>))}
+            <tr className="title">
+              <td>Platforms</td>
+            </tr>
+            {platforms.map( p => (<tr><td>{p}</td></tr>))}
+          </table>
+          <div className='description'>
+            {description}
+          </div>
         </div>
+
       </div>
 
       <NavLink className='floatingButton' to='/main'>
