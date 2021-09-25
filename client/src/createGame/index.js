@@ -7,6 +7,8 @@ function CreateGame() {
   const [ state, setState ] = useState({
     genres: [],
     platforms: [],
+    showGenres: false,
+    showPlatforms: false,
   });
 
   let platforms = [
@@ -28,6 +30,14 @@ function CreateGame() {
     'FPS',
     'MMOG',
   ];
+
+  function toggleGenres() {
+    setState({ ...state, showGenres: !state.showGenres });
+  }
+
+  function togglePlatforms() {
+    setState({ ...state, showPlatforms: !state.showPlatforms });
+  }
 
   return (
     <div className='create'>
@@ -64,8 +74,8 @@ function CreateGame() {
           placeholder='name...'
         />
 
-        <button>Select genre</button>
-        <div className='selectGenre'>
+        <span onClick={toggleGenres}>Select genre</span>
+        <div className={'selectGenre ' + (state.showGenres ? 'visible' : 'hidden')}>
           <label>Genre:</label>
 
           {genres.map( g => {
@@ -89,8 +99,8 @@ function CreateGame() {
           <button>Cancel</button>
         </div>
 
-        <button>Select platform</button>
-        <div className='selectPlatform'>
+        <span onClick={togglePlatforms}>Select platform</span>
+        <div className={'selectPlatform ' + (state.showPlatforms ? 'visible' : 'hidden')}>
           <label>Platforms:</label>
 
           {platforms.map( p => {

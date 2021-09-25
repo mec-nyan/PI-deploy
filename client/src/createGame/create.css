@@ -45,3 +45,34 @@
   color: #fff;
 }
 
+.selectGenre, .selectPlatform 
+{
+  position: absolute;
+  transition: all 400ms;
+  background-color: blue;
+}
+
+.hidden
+{
+  display: none;
+  opacity: 0;
+  animation: hide 500ms 1;
+}
+
+.visible 
+{
+  display: block;
+  opacity: 1;
+  animation: show 500ms 1;
+}
+
+@keyframes hide 
+{
+  0% { display: block; opacity: 1 }
+  100% { display: none; opacity: 0 }
+}
+@keyframes show 
+{
+  0% { display: none; opacity: 0}
+  100% { display: block; opacity: 1 }
+}
