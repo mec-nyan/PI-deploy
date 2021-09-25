@@ -86,11 +86,12 @@
 .rating 
 {
   position: absolute;
-  right: 25px;
-  bottom: 25px;
+  right: 40px;
+  top: 40px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  box-shadow: 0px 0px 4px #0008;
 }
 
 .rating span:first-child 
@@ -110,6 +111,7 @@
 {
   font-size: 32px;
   border: 2px solid #ddd;
+  background-color: #0004;
   height: 60px;
   width: 80px;
   text-align: center;
