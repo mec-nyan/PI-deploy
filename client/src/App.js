@@ -1,13 +1,13 @@
 import './App.css';
-import Home from './homePage';
-import Main from './mainRoute';
-import Details from './gameDetail';
-import Create from './createGame';
-import SearchBar from './searchBar';
-import SideBar from './sideBar';
-import Footer from './footer';
+import Home from './components/homePage';
+import Main from './components/mainRoute';
+import Details from './components/gameDetail';
+import Create from './components/createGame';
+import SearchBar from './components/searchBar';
+import SideBar from './components/sideBar';
+import Footer from './components/footer';
+import logo from './img/logoMecFull.png';
 import { Route, NavLink } from 'react-router-dom';
-import logo from './logoMecFull.png';
 
 
 function App() {
