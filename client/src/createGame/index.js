@@ -99,14 +99,14 @@ function CreateGame() {
                 <label htmlFor={g} >{g}</label>
               </div>)})
             }
-            <label htmlFor='otherGenre'>Other</label>
+            <label htmlFor='otherGenre'>Other:</label>
             <input
               type='text'
               name='otherGenre'
               placeholder='new genre'
             />
-            <span>Add</span>
-            <span onClick={hideGenres}>Ok</span>
+            <span className='add'>Add</span>
+            <span className='ok' onClick={hideGenres}>Ok</span>
           </div>
         </div>
 
