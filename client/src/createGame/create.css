@@ -6,12 +6,34 @@
 
 .create
 {
-  width: 100%;
+  width: 80%;
+  margin: 40px 10%;
   /*height: 100vh;*/
   background-color: transparent;
   color: #ddd;
   display: flex;
   flex-direction: column;
+  border-radius: 35px;
+  overflow: hidden;
+  /*position: relative;*/
+}
+
+.create h1 
+{
+  font-size: 24px;
+  margin: 0px;
+  background-color: #892CA07f;
+  padding: 20px;
+  margin: 0px;
+  letter-spacing: 4px;
+  border-bottom-right-radius: 35px;
+  border-bottom: 1px solid #ddd;
+  border-right: 1px solid #ddd;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+  margin-right: auto;
+  /*position: absolute;*/
+  /*top: 0px;*/
+  /*left: 0px;*/
 }
 
 .gameForm 
@@ -48,8 +70,78 @@
 .selectGenre, .selectPlatform 
 {
   position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: scroll;
   transition: all 400ms;
-  background-color: blue;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.inner 
+{
+  max-width: 50%;
+  background-image: linear-gradient(to bottom, #eee 0%, #ddd 20% , #ccc 50%);
+  color: #444;
+  border-radius: 6px;
+  padding: 20px;
+  box-shadow: 0px 0px 10px black, 0px 0px 20px black;
+}
+
+.sel 
+{
+  position: relative;
+  margin: 5px;
+}
+
+.circle 
+{
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 10px;
+  height: 10px;
+  background-color: transparent;
+  border: 1px solid #892CA0;
+  border-radius: 50%;
+  margin: 4px;
+  transition: background-color 400ms;
+  z-index: 10;
+}
+
+.sel input:checked ~ .circle, .sel input:checked:hover ~ .circle 
+{
+  background-color: #BC5FD3;
+}
+
+.sel input:hover ~ .circle 
+{
+  background-color: #aaa;
+}
+
+.sel label 
+{ 
+  position: relative;
+  left: 30px;
+}
+
+input[type=checkbox] 
+{
+  opacity: 0.0;
+  cursor: pointer;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  z-index: 11;
+}
+
+input[type=checkbox]:checked+label 
+{
+  color: red;
 }
 
 .hidden
@@ -61,7 +153,7 @@
 
 .visible 
 {
-  display: block;
+  display: flex;
   opacity: 1;
   animation: show 500ms 1;
 }

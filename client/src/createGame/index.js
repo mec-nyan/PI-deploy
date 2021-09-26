@@ -31,12 +31,20 @@ function CreateGame() {
     'MMOG',
   ];
 
-  function toggleGenres() {
-    setState({ ...state, showGenres: !state.showGenres });
+  function showGenres() {
+    setState({ ...state, showGenres: true });
   }
 
-  function togglePlatforms() {
-    setState({ ...state, showPlatforms: !state.showPlatforms });
+  function hideGenres() {
+    setState({ ...state, showGenres: false });
+  }
+
+  function showPlatforms() {
+    setState({ ...state, showPlatforms: true });
+  }
+
+  function hidePlatforms() {
+    setState({ ...state, showPlatforms: false });
   }
 
   return (
@@ -74,54 +82,63 @@ function CreateGame() {
           placeholder='name...'
         />
 
-        <span onClick={toggleGenres}>Select genre</span>
+        <span onClick={showGenres}>Select genre</span>
         <div className={'selectGenre ' + (state.showGenres ? 'visible' : 'hidden')}>
-          <label>Genre:</label>
+          <div className='inner'>
+            <label>Genre:</label>
 
-          {genres.map( g => {
-            return (<div>
-              <input
-                type='checkbox'
-                name={g}
-                value={g}
-                id={'id_' + g}
-              />
-              <label htmlFor={g} >{g}</label>
-            </div>)})
-          }
-          <label htmlFor='otherGenre'>Other</label>
-          <input
-            type='text'
-            name='otherGenre'
-            placeholder='new genre'
-          />
-          <button>Ok</button>
-          <button>Cancel</button>
+            {genres.map( g => {
+              return (<div className='sel'>
+                <input
+                  type='checkbox'
+                  name={g}
+                  value={g}
+                  id={'id_' + g}
+                />
+                <span className='circle'></span>
+                <label htmlFor={g} >{g}</label>
+              </div>)})
+            }
+            <label htmlFor='otherGenre'>Other</label>
+            <input
+              type='text'
+              name='otherGenre'
+              placeholder='new genre'
+            />
+            <span>Add</span>
+            <span onClick={hideGenres}>Ok</span>
+          </div>
         </div>
 
-        <span onClick={togglePlatforms}>Select platform</span>
+        <span onClick={showPlatforms}>Select platform</span>
         <div className={'selectPlatform ' + (state.showPlatforms ? 'visible' : 'hidden')}>
-          <label>Platforms:</label>
+          <div className='inner'>
+            <label>Platforms:</label>
 
-          {platforms.map( p => {
-            return (<div>
+            {platforms.map( p => {
+              return (<div>
+                <input
+                  type='checkbox'
+                  name={p}
+                  value={p}
+                  id={'id_' + p}
+                />
+                <label htmlFor={p} >{p}</label>
+              </div>)})
+            }
+            <div>
+              <label htmlFor='otherPlatform'>Other</label>
               <input
-                type='checkbox'
-                name={p}
-                value={p}
-                id={'id_' + p}
+                type='text'
+                name='otherPlatform'
+                placeholder='new platform'
               />
-              <label htmlFor={p} >{p}</label>
-            </div>)})
-          }
-          <label htmlFor='otherPlatform'>Other</label>
-          <input
-            type='text'
-            name='otherPlatform'
-            placeholder='new platform'
-          />
-          <button>Ok</button>
-          <button>Cancel</button>
+              <span className='add'>Add</span>
+            </div>
+            <div>
+              <span className='ok' onClick={hidePlatforms}>Ok</span>
+            </div>
+          </div>
         </div>
 
         <input
