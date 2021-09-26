@@ -1,22 +1,77 @@
-import DEFAULT_ACTION from '../constants/index.js';
+import * from '../constants/index.js';
 import axios from 'axios';
 
-import store from '../store/index.js';
 
-
-//axios.get(`https://api.rawg.io/api/games/${i}?key=dc0bb9763e7b4381839bc1ed7a3b70e2`);
-function getGames() {
-  return {
-    type: DEFAULT_ACTION,
-    payload: 'hello world',
-  };
+function orderByRating() {
+  return { type: ORDER_BY_RATING };
 }
 
+function orderByName() {
+  return { type: ORDER_BY_NAME };
+}
 
-//let games = await axios('http://localhost:3001/videogames');
-//console.log(games.data.output);
+function orderAscending() {
+  return { type: ASCENDING };
+}
 
-store.dispatch(getGames());
-console.log(store.getState());
+function orderDescending() {
+  return { type: DESCENDING };
+}
 
-export default getGames;
+function filterApi() {
+  return { type: FILTER_API };
+}
+
+function fileterLocal() {
+  return { type: FILTER_LOCAL };
+}
+
+function loading(bool) {
+  return { type: LOADING, payload: bool };
+}
+
+function getStart() {
+  return { type: GET_START };
+}
+
+function getEnd(payload) {
+  return { type: GET_END, payload };
+}
+
+function postStart() {
+  return { type: POST_START };
+}
+
+function postEnd() {
+  return { type: POST_END };
+}
+
+function next(n) {
+  return { type: NEXT, payload: n };
+}
+
+function getData(id) {
+  return function (dispatch) {
+    dispatch(getStart());
+    axios.get(`http://localhost:3001/videogames/${id}`)
+      .then(r => r.data)
+      .then(d => dispatch(getEnd(d)))
+      .catch(e => console.log(e));
+  }
+}
+
+export {
+  orderByRating,
+  orderByName,
+  orderAscending,
+  orderDescending,
+  fileterLocal,
+  filterApi,
+  loading,
+  getStart,
+  getEnd,
+  postStart,
+  postEnd,
+  next,
+  getData,
+}
