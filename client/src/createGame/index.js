@@ -83,7 +83,7 @@ function CreateGame() {
         />
 
         <span onClick={showGenres}>Select genre</span>
-        <div className={'selectGenre ' + (state.showGenres ? 'visible' : 'hidden')}>
+        <div className={'selectGenre ' + (state.showGenres ? 'selectVisible' : 'selectHidden')}>
           <div className='inner'>
             <label>Genre:</label>
 
@@ -111,7 +111,7 @@ function CreateGame() {
         </div>
 
         <span onClick={showPlatforms}>Select platform</span>
-        <div className={'selectPlatform ' + (state.showPlatforms ? 'visible' : 'hidden')}>
+        <div className={'selectPlatform ' + (state.showPlatforms ? 'selectVisible' : 'selectHidden')}>
           <div className='inner'>
             <label>Platforms:</label>
 

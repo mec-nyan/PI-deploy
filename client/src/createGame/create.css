@@ -167,14 +167,14 @@ input[type=checkbox]:checked+label
   color: #444;
 }
 
-.hidden
+.selectHidden
 {
   display: none;
   opacity: 0;
   animation: hide 500ms 1;
 }
 
-.visible 
+.selectVisible 
 {
   display: flex;
   opacity: 1;
