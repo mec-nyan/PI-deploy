@@ -2,7 +2,29 @@ const router = require('express').Router();
 const { Videogame, Genre } = require('../db');
 const load = require('../loadgame');  // >> this will load games in our local database
 
+const process = require('process');
+const axios = require('axios');
+require('dotenv').config();
+const { KEY } = process.env;
+const url = 'https://api.rawg.io/api/games';
 
+
+router.get('/:id', async function(req, res) {
+  let { id } = req.params;
+  let game = await axios.get(`${url}/${id}?key=${KEY}`);
+  game = game.data;
+  let detail = {
+    name: game.name,
+    description: game.description,
+    released: game.released,
+    image: game.background_image,
+    rating: game.rating,
+    platforms: game.platforms.map( p => p.platform.name ),
+    genres: game.genres.map( g => g.name ),
+  };
+  return res.status(200).json(detail);
+});
+/*
 router.get('/:_id', async function(req, res) {
   // GET /videogame/{idVideogame}:
   // Obtener el detalle de un videojuego en particular
@@ -36,6 +58,7 @@ router.get('/:_id', async function(req, res) {
     return res.status(404).json({msg: 'shit happens bro'});
   }
 });
+*/
 
 router.post('/', async function(req, res) {
   // POST /videogame:
