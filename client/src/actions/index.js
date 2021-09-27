@@ -1,4 +1,6 @@
-import * from '../constants/index.js';
+import { ORDER_BY_RATING, ORDER_BY_NAME, ASCENDING, DESCENDING } from '../constants/index.js'; 
+import { FILTER_API, FILTER_LOCAL, GET_START, GET_END } from '../constants/index.js';
+import { POST_START, POST_END, NEXT } from '../constants/index.js';
 import axios from 'axios';
 
 
@@ -26,10 +28,6 @@ function fileterLocal() {
   return { type: FILTER_LOCAL };
 }
 
-function loading(bool) {
-  return { type: LOADING, payload: bool };
-}
-
 function getStart() {
   return { type: GET_START };
 }
@@ -50,10 +48,21 @@ function next(n) {
   return { type: NEXT, payload: n };
 }
 
+/*
 function getData(id) {
-  return function (dispatch) {
+  return dispatch => {
     dispatch(getStart());
     axios.get(`http://localhost:3001/videogames/${id}`)
+      .then(r => r.data)
+      .then(d => dispatch(getEnd(d)))
+      .catch(e => console.log(e));
+  }
+}
+*/
+function getData() {
+  return dispatch => {
+    dispatch(getStart());
+    axios.get(`http://localhost:3001/videogames`)
       .then(r => r.data)
       .then(d => dispatch(getEnd(d)))
       .catch(e => console.log(e));
@@ -67,7 +76,6 @@ export {
   orderDescending,
   fileterLocal,
   filterApi,
-  loading,
   getStart,
   getEnd,
   postStart,

@@ -1,4 +1,4 @@
-import DEFAULT_ACTION from '../constants/index.js';
+import * as actions from '../constants';
 
 
 const initialState = {
@@ -12,31 +12,31 @@ const initialState = {
 
 function rootReducer(state = initialState, action) {
   switch (action.type) {
-    case ORDER_BY_RATING:
+    case actions.ORDER_BY_RATING:
       return { ...state, orderBy: 'rating' };
-    case ORDER_BY_NAME:
+    case actions.ORDER_BY_NAME:
       return { ...state, orderBy: 'name' };
-    case ASCENDING:
+    case actions.ASCENDING:
       return { ...state, ascending: true };
-    case DESCENDING:
+    case actions.DESCENDING:
       return { ...state, ascending: false };
-    case FILTER_API:
+    case actions.FILTER_API:
       return { ...state, filterBy: 'external' };
-    case FILTER_LOCAL:
+    case actions.FILTER_LOCAL:
       return { ...state, filterBy: 'local' };
-    case GET_START:
+    case actions.GET_START:
       return { ...state, loading: true };
-    case GET_END:
+    case actions.GET_END:
       return {
         ...state,
         loading: false,
         games: action.payload,
       };
-    case POST_START:
+    case actions.POST_START:
       return { ...state, loading: true };
-    case POST_END:
+    case actions.POST_END:
       return { ...state, loading: false };
-    case NEXT:
+    case actions.NEXT:
       return { ...state, next: action.payload };
     default:
       return state;
