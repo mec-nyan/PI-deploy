@@ -9,12 +9,6 @@ function SearchBar() {
     <>
       <div className='search'>
 
-        {/*
-        <NavLink to='/'>
-          <img src={logo} alt='MEC' />
-        </NavLink>
-        */}
-
         <form className='searchForm'>
           <input type='text' id='isearch' name='isearch' placeholder='search for games ...' />
           <label htmlFor='isearch'>Find it!</label>

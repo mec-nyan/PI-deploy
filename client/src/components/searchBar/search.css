@@ -70,4 +70,12 @@
   line-height: 24px;
   height: 24px;
   border-radius: 17px;
+  transition: all 400ms;
+  cursor: pointer;
+}
+
+.searchForm label:hover 
+{
+  background-color: #BC5FD3;
+  color: #fff;
 }

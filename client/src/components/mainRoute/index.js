@@ -9,11 +9,15 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { getData } from '../../actions';
 
+import { useState, useEffect } from 'react';
 
 function MainPage({ games, getData }) {
 
-  getData();
+  useEffect(getData, []);
+  //getData();
   console.log(games);
+  
+  let cards = games.map( g => (<Card genres={g.genres.join(', ')} title={g.name} rating={g.rating} background={g.image} key={g.id} />));
 
   return (
     <div className='main'>
@@ -30,14 +34,7 @@ function MainPage({ games, getData }) {
       </div>
 
       <div className='mainView'>
-        <Card genre={'Action, RPG'} rating='1.4' />
-        <Card genre={'Action'} rating='1.4' />
-        <Card genre={'Action, RPG, Adventure'} rating='1.4' />
-        <Card genre={'Action, Romance'} rating='1.4' />
-        <Card genre={'Action, RPG'} rating='1.4' />
-        <Card genre={'Action, Indie'} rating='1.4' />
-        <Card genre={'Action, RPG'} rating='1.4' />
-        <Card genre={'Action, RPG'} rating='1.4' />
+        {cards}
       </div>
 
     </div> 

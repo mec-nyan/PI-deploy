@@ -1,5 +1,4 @@
 import './card.css';
-import example from './img/nierAutomata.jpg';
 import { NavLink } from 'react-router-dom';
 
 

@@ -2,7 +2,7 @@
 {
   width: 250px;
   margin: 10px;
-  /*height: 360px;*/
+  height: 340px;
   border-radius: 10px;
   border: 1px solid #444;
   background-color: #1f1f1f;
@@ -12,6 +12,7 @@
   flex-direction: column;
   justify-content: top;
   align-items: center;
+  position: relative;
   box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.5);
   transition: all 400ms;
 }
@@ -30,7 +31,8 @@
 {
   margin: 10px 0px;
   font-weight: lighter;
-  font-size: 20px;
+  font-size: 18px;
+  text-align: center;
 }
 .card img 
 {
@@ -83,4 +85,6 @@
   padding: 10px 20px;
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
+  position: absolute;
+  bottom: 0px;
 }

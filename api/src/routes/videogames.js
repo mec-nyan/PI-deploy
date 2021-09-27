@@ -55,6 +55,7 @@ router.get('/', async function(req, res) {
   }
   let out = games.data.results.map(function(g) {
     return {
+      id: g.id,
       name: g.name,
       rating: g.rating,
       genres: g.genres.map( genre => genre.name ),
