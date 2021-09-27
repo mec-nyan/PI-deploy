@@ -11,6 +11,7 @@ const DETAILS_START = 'DETAILS_START';
 const POST_START = 'POST_START';
 const POST_END = 'POST_END';
 const PRELOAD = 'PRELOAD';
+const FULL_PRELOAD = 'FULL_PRELOAD';
 const NEXT = 'NEXT';
 
 
@@ -28,5 +29,6 @@ export {
   POST_START,
   POST_END,
   PRELOAD,
+  FULL_PRELOAD,
   NEXT,
 };

@@ -12,9 +12,10 @@ import { connect } from 'react-redux';
 import { useEffect } from 'react';
 
 
-function Home({ preLoad }) {
+function Home({ preLoad, fullPreload }) {
 
   // >> Load games for the first time
+  /*
   useEffect(function() {
     let id = 1;
     while (id < 100) {
@@ -23,6 +24,8 @@ function Home({ preLoad }) {
       ++id;
     }
   }, []);
+  */ 
+  useEffect(fullPreload, []);
 
 
   return (

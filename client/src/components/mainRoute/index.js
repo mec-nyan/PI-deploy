@@ -54,9 +54,10 @@ function MainPage({ loading, games }) {
         <button onClick={next}>&gt;</button>
       </div>
 
+      {loading ? <div className='mainView'><h1>Loading . . .</h1></div> :
       <div className='mainView'>
         {games.slice(state.from, state.from + state.count).map( g => (<Card genres={g.genres.join(', ')} title={g.name} rating={g.rating} background={g.image} id={g.id} key={g.id} />))}
-      </div>
+      </div>}
 
     </div> 
   );

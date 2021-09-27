@@ -57,6 +57,12 @@ function rootReducer(state = initialState, action) {
         console.log('game rejected with ');
         return state;
       }
+    case actions.FULL_PRELOAD:
+      return { 
+        ...state, 
+        games: action.payload,
+        loading: false,
+      };
     case actions.NEXT:
       return { ...state, next: action.payload };
     default:

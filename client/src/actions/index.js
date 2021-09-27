@@ -79,6 +79,17 @@ function preLoad(id) {
   }
 }
 
+function fullPreload() {
+  console.log('Full preload from 3001/videogames');
+  return dispatch => {
+    dispatch({ type: constants.GET_START });
+    axios.get(`http://localhost:3001/videogames`)
+      .then(r => r.data)
+      .then(d  => dispatch({ type: constants.FULL_PRELOAD, payload: d }))
+      .catch(() => console.log('axios error in function "fullPreload"'));
+  }
+}
+
 export {
   orderByRating,
   orderByName,
@@ -94,4 +105,5 @@ export {
   getData,
   getDetails,
   preLoad,
+  fullPreload,
 }

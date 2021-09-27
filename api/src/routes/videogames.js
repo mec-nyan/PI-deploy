@@ -48,23 +48,50 @@ router.get('/', async function(req, res) {
   // filter by name 
   let { name } = req.query;
   let games;
+  let out = [];
   if (name) {
-    games = await axios.get(`${url}?search=${name}&key=${KEY}`);
+    try {
+      games = await axios.get(`${url}?search=${name}&key=${KEY}`);
+      out = games.data.results.map(function(g) {
+        return {
+          id: g.id,
+          name: g.name,
+          rating: g.rating,
+          genres: g.genres.map( genre => genre.name ),
+          image: g.background_image,
+        };
+      });
+    } catch (err) {
+      console.log('Oops! axios error in "videogames?name=..."');
+    }
   } else {
-    games = await axios.get(`${url}?key=${KEY}`);
+    let id = 1;
+    let count = 0;
+    let game;
+    while (count < 100) {
+      try {
+        game = await axios.get(`${url}/${id}?key=${KEY}`);
+        game = game.data;
+        if (game.name) {
+          let detail = {
+            id,
+            name: game.name,
+            rating: game.rating,
+            image: game.background_image,
+            genres: game.genres.map( g => g.name ),
+          };
+          out.push(detail);
+          ++count;
+        }
+      } catch (err) {
+        console.log(`Oops! axios error in "videogames" [id: ${id}]`);
+      }
+      ++id;
+    }
   }
-  let out = games.data.results.map(function(g) {
-    return {
-      id: g.id,
-      name: g.name,
-      rating: g.rating,
-      genres: g.genres.map( genre => genre.name ),
-      image: g.background_image,
-    };
-  });
 
   console.log(out.length);
-  if (games.data) {
+  if (out.length > 0) {
     return res.status(200).json(out);
   } else {
     return res.status(404).json({msg: 'Not found'});
