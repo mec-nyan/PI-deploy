@@ -3,9 +3,17 @@ import { NavLink } from 'react-router-dom';
 import Card from '../card';
 import Selector from '../selector';
 import ArrowSelector from '../arrowSelector';
+// >> Redux
+import * as actionCreators from '../../actions';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import { getData } from '../../actions';
 
 
-function MainPage() {
+function MainPage({ games, getData }) {
+
+  getData();
+  console.log(games);
 
   return (
     <div className='main'>
@@ -36,5 +44,14 @@ function MainPage() {
   );
 }
 
+function mapStateToProps(state) {
+  return {
+    games: state.games,
+  };
+}
 
-export default MainPage;
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators(actionCreators, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(MainPage);

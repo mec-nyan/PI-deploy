@@ -3,14 +3,14 @@ import example from './img/nierAutomata.jpg';
 import { NavLink } from 'react-router-dom';
 
 
-function Card({ genre, rating }) {
+function Card({ title, genres, rating, background }) {
 
   return (
     <div className='card'>
 
-      <h3>Nier Automata</h3>
+      <h3>{title}</h3>
 
-      <img src={example} alt='' />
+      <img src={background} alt='' />
 
       <table className='data'>
         <tr>
@@ -19,7 +19,7 @@ function Card({ genre, rating }) {
         </tr>
         <tr>
           <td>Genre:</td>
-          <td>{genre}</td>
+          <td>{genres}</td>
         </tr>
       </table>
 
