@@ -49,16 +49,18 @@ function next(n) {
 }
 
 function getDetails(id) {
+  console.log('fetching details');
   return dispatch => {
-    dispatch(getStart());
+    dispatch({ type: 'DETAILS_START' });
     axios.get(`http://localhost:3001/videogame/${id}`)
       .then(r => r.data)
-      .then(payload => dispatch({ type: GET_DETAILS, payload }))
+      .then(d => dispatch({ type: GET_DETAILS, payload: d }))
       .catch(e => console.log(e));
   }
 }
 
 function getData() {
+  console.log('fetching data');
   return dispatch => {
     dispatch(getStart());
     axios.get(`http://localhost:3001/videogames`)

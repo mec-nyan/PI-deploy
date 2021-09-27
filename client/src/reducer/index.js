@@ -5,6 +5,7 @@ const initialState = {
   games: [],
   detail: {},
   loading: false,
+  loadingDetails: false,
   orderBy: 'name',
   filterBy: 'external',
   ascending: true,
@@ -33,10 +34,12 @@ function rootReducer(state = initialState, action) {
         loading: false,
         games: action.payload,
       };
+    case 'DETAILS_START':
+      return { ...state, loadingDetails: true };
     case actions.GET_DETAILS:
       return {
         ...state,
-        loading: false, 
+        loadingDetails: false, 
         detail: action.payload,
       };
     case actions.POST_START:

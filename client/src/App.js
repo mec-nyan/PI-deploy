@@ -31,7 +31,10 @@ function App() {
             <Main />
           </Route> 
 
-          <Route exact path='/main/detail/:id' component={Details} />
+          <Route exact path='/main/detail/:id'>
+            <Details />
+          </Route>
+
 
           <Route exact path='/main/create'>
             <Create />

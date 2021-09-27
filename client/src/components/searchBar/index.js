@@ -1,6 +1,4 @@
 import './search.css';
-import logo from './logoMec.png';
-import { NavLink } from 'react-router-dom';
 
 
 function SearchBar() {

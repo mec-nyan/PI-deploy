@@ -1,6 +1,6 @@
 import './create.css';
 import { NavLink } from 'react-router-dom';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 
 function CreateGame() {
@@ -10,6 +10,8 @@ function CreateGame() {
     showGenres: false,
     showPlatforms: false,
   });
+
+  useEffect(() => console.log("Im in create"));
 
   let platforms = [
     'PC',

@@ -13,10 +13,6 @@ function Selector({ text, options }) {
     setState({ ...state, hidden: 'visible' });
   }
 
-  function hidePopup() {
-    setState({ ...state, hidden: 'hidden' });
-  }
-
   function Select(e) {
     setState({ ...state, selection: e.target.innerText, hidden: 'hidden' });
   }

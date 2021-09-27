@@ -9,14 +9,16 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 import { useState, useEffect } from 'react';
+import { getData } from '../../actions';
 
-function MainPage({ games, getData }) {
+function MainPage({ loading, games, getData }) {
 
   useEffect(getData, []);
-  //getData();
-  console.log(games);
+  useEffect(() => console.log("i'm in main"));
   
-  let cards = games.map( g => (<Card genres={g.genres.join(', ')} title={g.name} rating={g.rating} background={g.image} id={g.id} />));
+  if (loading) return <h1>Loading...</h1>;
+
+  let cards = games.map( g => (<Card genres={g.genres.join(', ')} title={g.name} rating={g.rating} background={g.image} id={g.id} key={g.id} />));
 
   return (
     <div className='main'>
@@ -43,6 +45,7 @@ function MainPage({ games, getData }) {
 function mapStateToProps(state) {
   return {
     games: state.games,
+    loading: state.loading,
   };
 }
 
