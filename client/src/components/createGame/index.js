@@ -63,13 +63,6 @@ function CreateGame() {
           placeholder='name...'
         />
 
-        <label htmlFor='description'>Description:</label>
-        <input
-          type='text'
-          name='description'
-          placeholder='name...'
-        />
-
         <label htmlFor='released'>Released:</label>
         <input
           type='text'
@@ -84,7 +77,16 @@ function CreateGame() {
           placeholder='name...'
         />
 
-        <span onClick={showGenres}>Select genre</span>
+        <label htmlFor='description'>Description:</label>
+        <textarea
+          type='text'
+          name='description'
+          placeholder='name...'
+          cols='30'
+          rows='6'
+        />
+
+        <span className='selBtn' onClick={showGenres}>Select genre</span>
         <div className={'selectGenre ' + (state.showGenres ? 'selectVisible' : 'selectHidden')}>
           <div className='inner'>
             <label>Genre:</label>
@@ -112,19 +114,20 @@ function CreateGame() {
           </div>
         </div>
 
-        <span onClick={showPlatforms}>Select platform</span>
+        <span className='selBtn' onClick={showPlatforms}>Select platform</span>
         <div className={'selectPlatform ' + (state.showPlatforms ? 'selectVisible' : 'selectHidden')}>
           <div className='inner'>
             <label>Platforms:</label>
 
             {platforms.map( p => {
-              return (<div>
+              return (<div className='sel'>
                 <input
                   type='checkbox'
                   name={p}
                   value={p}
                   id={'id_' + p}
                 />
+                <span className='circle'></span>
                 <label htmlFor={p} >{p}</label>
               </div>)})
             }

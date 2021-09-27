@@ -16,9 +16,9 @@ function MainPage({ loading, games, getData }) {
   useEffect(getData, []);
   useEffect(() => console.log("i'm in main"));
   
-  if (loading) return <h1>Loading...</h1>;
+  //if (loading) return <h1>Loading...</h1>;
 
-  let cards = games.map( g => (<Card genres={g.genres.join(', ')} title={g.name} rating={g.rating} background={g.image} id={g.id} key={g.id} />));
+  //let cards = games.map( g => (<Card genres={g.genres.join(', ')} title={g.name} rating={g.rating} background={g.image} id={g.id} key={g.id} />));
 
   return (
     <div className='main'>
@@ -34,9 +34,10 @@ function MainPage({ loading, games, getData }) {
         </div>
       </div>
 
+      {loading ? <div className='mainView'><h1>Loading...</h1></div> :
       <div className='mainView'>
-        {cards}
-      </div>
+        {games.map( g => (<Card genres={g.genres.join(', ')} title={g.name} rating={g.rating} background={g.image} id={g.id} key={g.id} />))}
+      </div>}
 
     </div> 
   );

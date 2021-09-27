@@ -9,8 +9,8 @@
   width: 80%;
   margin: 40px 10%;
   /*height: 100vh;*/
-  background-color: transparent;
-  color: #ddd;
+  background-image: linear-gradient(to bottom, #333, #222);
+  color: #777;
   display: flex;
   flex-direction: column;
   border-radius: 35px;
@@ -27,8 +27,8 @@
   margin: 0px;
   letter-spacing: 4px;
   border-bottom-right-radius: 35px;
-  border-bottom: 1px solid #ddd;
-  border-right: 1px solid #ddd;
+  /*border-bottom: 1px solid #ddd;*/
+  /*border-right: 1px solid #ddd;*/
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
   margin-right: auto;
   /*position: absolute;*/
@@ -40,6 +40,48 @@
 {
   display: flex;
   flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+.gameForm input
+{
+  margin: 10px;
+}
+
+.gameForm input[type=text]
+{
+  background-color: #666;
+  border: 1px solid transparent;
+  border-radius: 14px;
+  padding: 0px 10px;
+  border-bottom: 1px solid #aaa;
+  font-size: 16px;
+  color: #111;
+  height: 28px;
+  line-height: 28px;
+  transition: all 400ms;
+}
+
+.gameForm textarea 
+{
+  background-color: #666;
+  border: 1px solid transparent;
+  border-radius: 14px;
+  padding: 10px;
+  border-bottom: 1px solid #aaa;
+  font-size: 14px;
+  font-family: 'ubuntu', sans-serif;
+  color: #111;
+  margin: 10px;
+  transition: all 400ms;
+}
+
+.gameForm input[type=text]:focus, .gameForm textarea:focus
+{
+  background-color: #ddd;
+  color: #333;
+  border-bottom: 1px solid #fff;
 }
 
 .floatingButton 
@@ -69,7 +111,7 @@
 
 .selectGenre, .selectPlatform 
 {
-  position: absolute;
+  position: fixed;
   top: 0px;
   left: 0px;
   width: 100%;
@@ -146,7 +188,7 @@ input[type=checkbox]:checked+label
   color: red;
 }
 
-.selectGenre input[type=text] 
+.selectGenre input[type=text], .selectPlatform input[type=text] 
 {
   font-size: 14px;
   height: 22px;
@@ -161,7 +203,7 @@ input[type=checkbox]:checked+label
   transition: all 400ms;
 }
 
-.selectGenre input[type=text]:focus 
+.selectGenre input[type=text]:focus, .selectPlatform input[type=text]:focus 
 {
   background-color: #eee;
   color: #444;
@@ -230,4 +272,25 @@ input[type=checkbox]:checked+label
   background-color: #BC5FD3;
   color: #fff;
   border-color: #BC5FD3;
+}
+
+.selBtn, input[type=submit]
+{
+  border: none;
+  background-color: #892CA0;
+  color: #ddd;
+  width: 150px;
+  height: 32px;
+  text-align: center;
+  line-height: 32px; 
+  transition: all 400ms;
+  border-radius: 5px;
+  margin: 10px;
+  cursor: pointer;
+}
+
+.selBtn:hover, input[type=submit]:hover
+{ 
+  background-color: #AB37C8;
+  color: #fff;
 }
