@@ -3,6 +3,7 @@ import * as actions from '../constants';
 
 const initialState = {
   games: [],
+  detail: {},
   loading: false,
   orderBy: 'name',
   filterBy: 'external',
@@ -31,6 +32,12 @@ function rootReducer(state = initialState, action) {
         ...state,
         loading: false,
         games: action.payload,
+      };
+    case actions.GET_DETAILS:
+      return {
+        ...state,
+        loading: false, 
+        detail: action.payload,
       };
     case actions.POST_START:
       return { ...state, loading: true };

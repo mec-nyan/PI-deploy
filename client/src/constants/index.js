@@ -6,6 +6,7 @@ const FILTER_LOCAL = 'FILTER_LOCAL';
 const FILTER_API = 'FILTER_API';
 const GET_START = 'GET_START';
 const GET_END = 'GET_END';
+const GET_DETAILS = 'GET_DETAILS';
 const POST_START = 'POST_START';
 const POST_END = 'POST_END';
 const NEXT = 'NEXT';
@@ -20,6 +21,7 @@ export {
   FILTER_API,
   GET_START,
   GET_END,
+  GET_DETAILS,
   POST_START,
   POST_END,
   NEXT,

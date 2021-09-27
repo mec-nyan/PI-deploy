@@ -1,5 +1,5 @@
 import { ORDER_BY_RATING, ORDER_BY_NAME, ASCENDING, DESCENDING } from '../constants/index.js'; 
-import { FILTER_API, FILTER_LOCAL, GET_START, GET_END } from '../constants/index.js';
+import { FILTER_API, FILTER_LOCAL, GET_START, GET_END, GET_DETAILS } from '../constants/index.js';
 import { POST_START, POST_END, NEXT } from '../constants/index.js';
 import axios from 'axios';
 
@@ -48,17 +48,16 @@ function next(n) {
   return { type: NEXT, payload: n };
 }
 
-/*
-function getData(id) {
+function getDetails(id) {
   return dispatch => {
     dispatch(getStart());
-    axios.get(`http://localhost:3001/videogames/${id}`)
+    axios.get(`http://localhost:3001/videogame/${id}`)
       .then(r => r.data)
-      .then(d => dispatch(getEnd(d)))
+      .then(payload => dispatch({ type: GET_DETAILS, payload }))
       .catch(e => console.log(e));
   }
 }
-*/
+
 function getData() {
   return dispatch => {
     dispatch(getStart());
@@ -82,4 +81,5 @@ export {
   postEnd,
   next,
   getData,
+  getDetails,
 }
