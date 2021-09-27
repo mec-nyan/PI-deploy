@@ -13,16 +13,21 @@ router.get('/:id', async function(req, res) {
   let { id } = req.params;
   let game = await axios.get(`${url}/${id}?key=${KEY}`);
   game = game.data;
-  let detail = {
-    name: game.name,
-    description: game.description,
-    released: game.released,
-    image: game.background_image,
-    rating: game.rating,
-    platforms: game.platforms.map( p => p.platform.name ),
-    genres: game.genres.map( g => g.name ),
-  };
-  return res.status(200).json(detail);
+  if (game.name) {
+    let detail = {
+      id,
+      name: game.name,
+      description: game.description,
+      released: game.released,
+      image: game.background_image,
+      rating: game.rating,
+      platforms: game.platforms.map( p => p.platform.name ),
+      genres: game.genres.map( g => g.name ),
+    };
+    return res.status(200).json(detail);
+  } else {
+    return res.status(404).json({detail: 'Not found'});
+  }
 });
 /*
 router.get('/:_id', async function(req, res) {

@@ -7,8 +7,10 @@ const FILTER_API = 'FILTER_API';
 const GET_START = 'GET_START';
 const GET_END = 'GET_END';
 const GET_DETAILS = 'GET_DETAILS';
+const DETAILS_START = 'DETAILS_START';
 const POST_START = 'POST_START';
 const POST_END = 'POST_END';
+const PRELOAD = 'PRELOAD';
 const NEXT = 'NEXT';
 
 
@@ -22,7 +24,9 @@ export {
   GET_START,
   GET_END,
   GET_DETAILS,
+  DETAILS_START,
   POST_START,
   POST_END,
+  PRELOAD,
   NEXT,
 };

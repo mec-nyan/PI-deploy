@@ -3,8 +3,28 @@ import btn from './img/enterButton.png';
 import magicBlue from './img/magicCircleBlue.png';
 import magicMagenta from './img/magicCircleMagenta.png';
 import { NavLink } from 'react-router-dom';
+//>> Redux
+//>> for preloading the games
+import * as actionCreators from '../../actions';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 
-function Home() {
+import { useEffect } from 'react';
+
+
+function Home({ preLoad }) {
+
+  // >> Load games for the first time
+  useEffect(function() {
+    let id = 1;
+    while (id < 100) {
+      console.log(`add game '${id}'`);
+      preLoad(id);
+      ++id;
+    }
+  }, []);
+
+
   return (
     <div className="home">
       <header>
@@ -33,4 +53,14 @@ function Home() {
   );
 }
 
-export default Home;
+function mapStateToProps(state) {
+  return {
+    loading: state.loading,
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators(actionCreators, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home);

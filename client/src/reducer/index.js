@@ -9,7 +9,7 @@ const initialState = {
   orderBy: 'name',
   filterBy: 'external',
   ascending: true,
-  next: 1,
+  next: 0,
 };
 
 function rootReducer(state = initialState, action) {
@@ -34,7 +34,7 @@ function rootReducer(state = initialState, action) {
         loading: false,
         games: action.payload,
       };
-    case 'DETAILS_START':
+    case actions.DETAILS_START:
       return { ...state, loadingDetails: true };
     case actions.GET_DETAILS:
       return {
@@ -46,6 +46,17 @@ function rootReducer(state = initialState, action) {
       return { ...state, loading: true };
     case actions.POST_END:
       return { ...state, loading: false };
+    case actions.PRELOAD:
+      if (action.payload.name) {
+        console.log('game added: ' + action.payload.name);
+        return {
+          ...state,
+          games: [ ...state.games, action.payload ],
+        };
+      } else {
+        console.log('game rejected with ');
+        return state;
+      }
     case actions.NEXT:
       return { ...state, next: action.payload };
     default:

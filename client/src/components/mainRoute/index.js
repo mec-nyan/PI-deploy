@@ -9,16 +9,31 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 import { useState, useEffect } from 'react';
-import { getData } from '../../actions';
 
-function MainPage({ loading, games, getData }) {
+function MainPage({ loading, games }) {
+  //>> We're gonna use the redux state (pre loaded games)
+  //>> and filter from here
 
-  useEffect(getData, []);
+  //useEffect(getData, []);
   useEffect(() => console.log("i'm in main"));
   
-  //if (loading) return <h1>Loading...</h1>;
+  const [ state, setState ] = useState({
+    from: 0,
+    count: 15,
+    order: 'name',
+    asc: true,
+    external: true,
+  });
 
-  //let cards = games.map( g => (<Card genres={g.genres.join(', ')} title={g.name} rating={g.rating} background={g.image} id={g.id} key={g.id} />));
+  function next() {
+    if (state.from + state.count < games.length - 1) 
+      setState({ ...state, from: state.from + state.count });
+  }
+
+  function prev() {
+    if (state.from > 0)
+      setState({ ...state, from: state.from - state.count });
+  }
 
   return (
     <div className='main'>
@@ -34,10 +49,14 @@ function MainPage({ loading, games, getData }) {
         </div>
       </div>
 
-      {loading ? <div className='mainView'><h1>Loading...</h1></div> :
+      <div className='prevNext'>
+        <button onClick={prev}>&lt;</button>
+        <button onClick={next}>&gt;</button>
+      </div>
+
       <div className='mainView'>
-        {games.map( g => (<Card genres={g.genres.join(', ')} title={g.name} rating={g.rating} background={g.image} id={g.id} key={g.id} />))}
-      </div>}
+        {games.slice(state.from, state.from + state.count).map( g => (<Card genres={g.genres.join(', ')} title={g.name} rating={g.rating} background={g.image} id={g.id} key={g.id} />))}
+      </div>
 
     </div> 
   );
