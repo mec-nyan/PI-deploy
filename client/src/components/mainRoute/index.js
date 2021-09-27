@@ -7,7 +7,6 @@ import ArrowSelector from '../arrowSelector';
 import * as actionCreators from '../../actions';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { getData } from '../../actions';
 
 import { useState, useEffect } from 'react';
 
@@ -17,7 +16,7 @@ function MainPage({ games, getData }) {
   //getData();
   console.log(games);
   
-  let cards = games.map( g => (<Card genres={g.genres.join(', ')} title={g.name} rating={g.rating} background={g.image} key={g.id} />));
+  let cards = games.map( g => (<Card genres={g.genres.join(', ')} title={g.name} rating={g.rating} background={g.image} id={g.id} />));
 
   return (
     <div className='main'>

@@ -2,7 +2,7 @@ import './card.css';
 import { NavLink } from 'react-router-dom';
 
 
-function Card({ title, genres, rating, background }) {
+function Card({ id, title, genres, rating, background }) {
 
   return (
     <div className='card'>
@@ -22,7 +22,7 @@ function Card({ title, genres, rating, background }) {
         </tr>
       </table>
 
-      <NavLink className='more 'to='/main/detail'>
+      <NavLink className='more 'to={`/main/detail/${id}`}>
         <span>more</span>
       </NavLink>
     </div>
