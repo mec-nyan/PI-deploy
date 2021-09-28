@@ -95,17 +95,59 @@ router.post('/', async function(req, res) {
   // POST /videogame:
   // Recibe los datos recolectados desde el formulario controlado de la ruta de creación de videojuego por body
   // Crea un videojuego en la base de datos
+  let { name, rating, description, released, genres, platforms } = req.body;
+  //console.log('body: ', req.body);
+  //console.log('params: ', req.params);
+  //console.log('queries: ', req.query);
   try {
-    Videogame.create({
-      name: 'juego',
-      description: 'un juego',
-      rating: 1.2,
-      released: 'today',
+    let game = await Videogame.create({
+      name: name,
+      description: description,
+      released: released,
+      rating: rating,
     });
-  } catch {
-    ;
+
+    await bindGenre(game, genres);
+
+    await bindPlatform(game, platforms);
+
+  } catch (err) {
+    console.log('Oooooops');
+    return false;
   }
-  res.status(200).json({route: 'this is the videogame route'});
+
+  return res.status(200).json({msg: 'game created with', name, rating, description, genres, platforms});
 });
+
+
+//>> Helper functions
+
+async function bindGenre(game, genres) {
+  // >> Get list of genres
+  for (let gd of genres) {
+    let [ genre, created ] = await Genre.findOrCreate({
+      where: {
+        name: gd,
+        slug: gd.toLowerCase(),
+      }
+    });
+    await game.addGenre(genre); // Is 'await' necesary?
+    console.log(`\tGenre [ ${genre.name} ] has been linked to "${game.name}`);
+  }
+}
+
+async function bindPlatform(game, platforms) {
+  // >> Get list of platforms
+  for (let pd of platforms) {
+    let [ platform, created ] = await Platform.findOrCreate({
+      where: {
+        name: pd,
+        slug: pd.toLowerCase(),
+      }
+    });
+    await game.addPlatform(platform); // Is 'await' necesary?
+    console.log(`\tPlatform [ ${platform.name} ] has been linked to "${game.name}`);
+  }
+}
 
 module.exports = router;
