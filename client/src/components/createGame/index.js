@@ -11,18 +11,21 @@ function CreateGame({ genres, getGenres, loading, postGame }) {
   const [ state, setState ] = useState({
     genres: [],
     platforms: [],
+    name: '',
+    description: '',
+    rating: '',
+    released: '',
     showGenres: false,
     showPlatforms: false,
   });
 
   useEffect(() => console.log("Im in create"));
-  useEffect(() => console.log('GENRES IS: ', genres), []);
+  //useEffect(() => console.log('GENRES IS: ', genres), []);
   useEffect(function() {
     if (genres.length === 0) {
       getGenres();
     }
   }, []);
-  useEffect(() => console.log(genres), []);
 
 
   let platforms = [
@@ -52,6 +55,62 @@ function CreateGame({ genres, getGenres, loading, postGame }) {
     setState({ ...state, showPlatforms: false });
   }
 
+  function handleInputChange(e) {
+    e.preventDefault();
+    setState({
+      ...state,
+      [e.target.name]: e.target.value,
+    });
+    console.log(state[e.target.name]);
+  }
+
+  function showState(e) {
+    e.preventDefault();
+    console.log('---> STATE <---');
+    console.log(state);
+    console.log('---> xxxxx <---');
+  }
+
+  function toggleGenre(e) {
+    let g = e.target.name;
+    setState({
+      ...state,
+      genres: state.genres.includes(g) 
+        ? state.genres.filter(x => x !== g) 
+        : [ ...state.genres, g ],
+    });
+  }
+
+  function togglePlatform(e) {
+    let p = e.target.name;
+    setState({
+      ...state,
+      platforms: state.platforms.includes(p) 
+        ? state.platforms.filter(x => x !== p) 
+        : [ ...state.platforms, p ],
+    });
+  }
+
+  function submitPost() {
+    let game = {
+      name: state.name,
+      description: state.description,
+      released: state.released,
+      rating: state.rating,
+      genres: state.genres,
+      platforms: state.platforms,
+    };
+
+    if (game.name.length === 0) {
+      alert('Field "name" is empty!');
+      return;
+    } else {
+      postGame(game);
+      alert(`Game "${game.name}" was added!`);
+    }
+  }
+
+
   return (
     <div className='create'>
 
@@ -63,28 +122,36 @@ function CreateGame({ genres, getGenres, loading, postGame }) {
         <input
           type='text'
           name='name'
+          value={state.name}
           placeholder='name...'
+          onChange={handleInputChange}
         />
 
         <label htmlFor='released'>Released:</label>
         <input
           type='text'
           name='released'
+          value={state.released}
           placeholder='name...'
+          onChange={handleInputChange}
         />
 
         <label htmlFor='rating'>Rating:</label>
         <input
           type='text'
           name='rating'
+          value={state.rating}
           placeholder='name...'
+          onChange={handleInputChange}
         />
 
         <label htmlFor='description'>Description:</label>
         <textarea
           type='text'
           name='description'
+          value={state.description}
           placeholder='name...'
+          onChange={handleInputChange}
           cols='30'
           rows='6'
         />
@@ -102,6 +169,7 @@ function CreateGame({ genres, getGenres, loading, postGame }) {
                     name={g}
                     value={g}
                     id={'id_' + g}
+                    onClick={toggleGenre}
                   />
                   <span className='circle'></span>
                   <label htmlFor={g} >{g}</label>
@@ -133,6 +201,7 @@ function CreateGame({ genres, getGenres, loading, postGame }) {
                     name={p}
                     value={p}
                     id={'id_' + p}
+                    onClick={togglePlatform}
                   />
                   <span className='circle'></span>
                   <label htmlFor={p} >{p}</label>
@@ -158,6 +227,7 @@ function CreateGame({ genres, getGenres, loading, postGame }) {
         <input
           type='submit'
           value='Add game'
+          onClick={submitPost}
         />
       </form>
       <NavLink className='floatingButton' to='/main'>
