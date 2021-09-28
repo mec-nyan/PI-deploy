@@ -13,6 +13,7 @@ const POST_END = 'POST_END';
 const PRELOAD = 'PRELOAD';
 const FULL_PRELOAD = 'FULL_PRELOAD';
 const NEXT = 'NEXT';
+const FROM = 'FROM';
 
 
 export {
@@ -31,4 +32,5 @@ export {
   PRELOAD,
   FULL_PRELOAD,
   NEXT,
+  FROM,
 };

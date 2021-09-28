@@ -18,11 +18,15 @@ function orderDescending() {
   return { type: constants.DESCENDING };
 }
 
+function orderToggle() {
+  return { type: 'ORDER_TOGGLE' };
+}
+
 function filterApi() {
   return { type: constants.FILTER_API };
 }
 
-function fileterLocal() {
+function filterLocal() {
   return { type: constants.FILTER_LOCAL };
 }
 
@@ -44,6 +48,10 @@ function postEnd() {
 
 function next(n) {
   return { type: constants.NEXT, payload: n };
+}
+
+function setFrom(n) {
+  return { type: constants.FROM, payload: n };
 }
 
 function getDetails(id) {
@@ -95,7 +103,8 @@ export {
   orderByName,
   orderAscending,
   orderDescending,
-  fileterLocal,
+  orderToggle,
+  filterLocal,
   filterApi,
   getStart,
   getEnd,
@@ -106,4 +115,5 @@ export {
   getDetails,
   preLoad,
   fullPreload,
+  setFrom,
 }

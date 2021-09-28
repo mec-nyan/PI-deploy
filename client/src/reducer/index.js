@@ -9,6 +9,7 @@ const initialState = {
   orderBy: 'name',
   filterBy: 'external',
   ascending: true,
+  from: 0,
   next: 0,
 };
 
@@ -22,6 +23,8 @@ function rootReducer(state = initialState, action) {
       return { ...state, ascending: true };
     case actions.DESCENDING:
       return { ...state, ascending: false };
+    case 'ORDER_TOGGLE':
+      return { ...state, ascending: !state.ascending };
     case actions.FILTER_API:
       return { ...state, filterBy: 'external' };
     case actions.FILTER_LOCAL:
@@ -65,6 +68,8 @@ function rootReducer(state = initialState, action) {
       };
     case actions.NEXT:
       return { ...state, next: action.payload };
+    case actions.FROM:
+      return { ...state, from: action.payload };
     default:
       return state;
   }

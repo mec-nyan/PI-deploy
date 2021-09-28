@@ -107,3 +107,14 @@
   background-color: #892CA0;
 }
 
+.loading 
+{
+  animation: loader 2s infinite;
+}
+
+@keyframes loader 
+{
+  0% { opacity: 10%; }
+  50% { opacity: 100%; }
+  100% { opacity: 10%; }
+}

@@ -12,7 +12,7 @@ import { connect } from 'react-redux';
 import { useEffect } from 'react';
 
 
-function Home({ preLoad, fullPreload }) {
+function Home({ preLoad, games, fullPreload }) {
 
   // >> Load games for the first time
   /*
@@ -25,7 +25,7 @@ function Home({ preLoad, fullPreload }) {
     }
   }, []);
   */ 
-  useEffect(fullPreload, []);
+  useEffect(() => (games.length === 0) && fullPreload(), []);
 
 
   return (
@@ -59,6 +59,7 @@ function Home({ preLoad, fullPreload }) {
 function mapStateToProps(state) {
   return {
     loading: state.loading,
+    games: state.games,
   };
 }
 

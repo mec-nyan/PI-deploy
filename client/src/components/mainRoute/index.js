@@ -10,7 +10,7 @@ import { connect } from 'react-redux';
 
 import { useState, useEffect } from 'react';
 
-function MainPage({ loading, games }) {
+function MainPage({ loading, games, from, setFrom, orderBy, filterBy, ascending }) {
   //>> We're gonna use the redux state (pre loaded games)
   //>> and filter from here
 
@@ -18,21 +18,37 @@ function MainPage({ loading, games }) {
   useEffect(() => console.log("i'm in main"));
   
   const [ state, setState ] = useState({
-    from: 0,
     count: 15,
-    order: 'name',
-    asc: true,
     external: true,
   });
 
+  //>> Order the array
+  if (orderBy === 'name') {
+    if (ascending) {
+      games.sort((o, p) => o.name < p.name ? -1 : 1);
+    } else {
+      games.sort((o, p) => o.name > p.name ? -1 : 1);
+    }
+  } else if (orderBy === 'rating') {
+    if (ascending) {
+      games.sort((o, p) => p.rating - o.rating);
+    } else {
+      games.sort((o, p) => o.rating - p.rating);
+    }
+  }
+
   function next() {
-    if (state.from + state.count < games.length - 1) 
-      setState({ ...state, from: state.from + state.count });
+    if (from + state.count < games.length - 1) 
+      setFrom(from + state.count);
   }
 
   function prev() {
-    if (state.from > 0)
-      setState({ ...state, from: state.from - state.count });
+    if (from > 0)
+      setFrom(from - state.count);
+  }
+  
+  function reset() {
+    setFrom(0);
   }
 
   return (
@@ -45,18 +61,19 @@ function MainPage({ loading, games }) {
         <div className='buttons'>
           <Selector text='Order by:' options={['a-z', 'rating']} />
           <ArrowSelector />
-          <Selector text='Filter by:' options={['genre', 'created by']} />
+          <Selector text='Filter by:' options={['None', 'genre', 'created by']} />
         </div>
       </div>
 
       <div className='prevNext'>
-        <button onClick={prev}>&lt;</button>
-        <button onClick={next}>&gt;</button>
+        <button onClick={reset} title='top'>^</button>
+        <button onClick={prev} title='previous'>&lt;</button>
+        <button onClick={next} title='next'>&gt;</button>
       </div>
 
-      {loading ? <div className='mainView'><h1>Loading . . .</h1></div> :
+      {loading ? <div className='mainView'><h1 className='loading'>Loading . . .</h1></div> :
       <div className='mainView'>
-        {games.slice(state.from, state.from + state.count).map( g => (<Card genres={g.genres.join(', ')} title={g.name} rating={g.rating} background={g.image} id={g.id} key={g.id} />))}
+        {games.slice(from, from + state.count).map( g => (<Card genres={g.genres.join(', ')} title={g.name} rating={g.rating} background={g.image} id={g.id} key={g.id} />))}
       </div>}
 
     </div> 
@@ -67,6 +84,10 @@ function mapStateToProps(state) {
   return {
     games: state.games,
     loading: state.loading,
+    from: state.from,
+    orderBy: state.orderBy,
+    filterBy: state.filterBy,
+    ascending: state.ascending,
   };
 }
 

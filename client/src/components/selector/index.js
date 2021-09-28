@@ -1,8 +1,13 @@
 import './selector.css';
 import { useState } from 'react';
 
+// >> Redux
+import * as actionCreators from '../../actions';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 
-function Selector({ text, options }) {
+
+function Selector({ text, options, orderByName, orderByRating, filterApi, filterLocal, setFrom }) {
 
   const [ state, setState ] = useState({
     hidden: 'hidden',
@@ -14,7 +19,26 @@ function Selector({ text, options }) {
   }
 
   function Select(e) {
-    setState({ ...state, selection: e.target.innerText, hidden: 'hidden' });
+    let option = e.target.innerText;
+    setState({ ...state, selection: option, hidden: 'hidden' });
+    switch (option) {
+      case 'a-z':
+        orderByName();
+        setFrom(0);
+        break;
+      case 'rating':
+        orderByRating();
+        setFrom(0);
+        break;
+      case 'genre':
+        filterApi();
+        setFrom(0);
+        break;
+      case 'local':
+        filterLocal();
+        setFrom(0);
+        break;
+    }
   }
 
   return (
@@ -32,4 +56,16 @@ function Selector({ text, options }) {
   );
 }
 
-export default Selector;
+function mapStateToProps(state) {
+  return {
+    orderBy: state.orderBy,
+    filterBy: state.filterBy,
+    ascending: state.ascending,
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators(actionCreators, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Selector);
