@@ -154,4 +154,4 @@ async function bindPlatform(game, platforms) {
 module.exports = loadGames;
 
 // test 
-loadGames();
+//loadGames();

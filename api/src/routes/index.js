@@ -18,5 +18,6 @@ module.exports = {
   videogame: require('./videogame'),
   videogames: require('./videogames'),
   genres: require('./genres'),
+  localgames: require('./localgames'),
   index: router,
 };

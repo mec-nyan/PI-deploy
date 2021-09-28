@@ -49,7 +49,29 @@ router.get('/', async function(req, res) {
   let { name } = req.query;
   let games;
   let out = [];
+  let local = [];
   if (name) {
+    //>> find local and external games
+    try {
+      games = await Videogame.findAll({
+        attributes: ['id', 'name', 'rating'], 
+        include: Genre,
+        where: {
+          name: {
+            [Op.substring]: `%${name}%`,
+          },
+        },
+        limit: 15,
+      });
+      games.forEach( g => {
+        let { id, name, rating, genres } = g;
+        genres = genres.map( g => g.name);
+        local.push({ id, name, rating, genres, image: null });
+      });
+    } catch (err) {
+      console.log('/videogames?name=... error finding local games');
+    }
+    //
     try {
       games = await axios.get(`${url}?search=${name}&key=${KEY}`);
       out = games.data.results.map(function(g) {
@@ -61,10 +83,25 @@ router.get('/', async function(req, res) {
           image: g.background_image,
         };
       });
+
     } catch (err) {
       console.log('Oops! axios error in "videogames?name=..."');
     }
   } else {
+    //>> local first
+    try {
+      games = await Videogame.findAll({
+        attributes: ['id', 'name', 'description', 'rating'], 
+        include: Genre });
+      games.forEach( g => {
+        let { id, name, description, rating, genres } = g;
+        genres = genres.map( g => g.name);
+        local.push({ id, name, description, rating, genres });
+      });
+    } catch (err) {
+      console.log('/videogames?name=... error finding ALL local games');
+    }
+    // END
     let id = 1;
     let count = 0;
     let game;
@@ -90,7 +127,8 @@ router.get('/', async function(req, res) {
     }
   }
 
-  console.log(out.length);
+  out = [ ...local, ...out ];
+  console.log('NUMBER OF GAMES: ', out.length);
   if (out.length > 0) {
     return res.status(200).json(out);
   } else {

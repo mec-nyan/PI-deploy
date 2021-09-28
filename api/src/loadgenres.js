@@ -46,5 +46,8 @@ async function load() {
   }
 }
 
+// We can preload calling the function here
+// load();
+
 
 module.exports = load;
