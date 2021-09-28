@@ -14,6 +14,8 @@ const PRELOAD = 'PRELOAD';
 const FULL_PRELOAD = 'FULL_PRELOAD';
 const NEXT = 'NEXT';
 const FROM = 'FROM';
+const GET_PLATFORMS = 'GET_PLATFORMS';
+const GET_GENRES = 'GET_GENRES';
 
 
 export {
@@ -33,4 +35,6 @@ export {
   FULL_PRELOAD,
   NEXT,
   FROM,
+  GET_PLATFORMS,
+  GET_GENRES,
 };

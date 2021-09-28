@@ -2,8 +2,12 @@ import './create.css';
 import { NavLink } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 
+// >> Redux
+import * as actionCreators from '../../actions';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 
-function CreateGame() {
+function CreateGame({ genres, getGenres, loading, postGame }) {
   const [ state, setState ] = useState({
     genres: [],
     platforms: [],
@@ -12,25 +16,24 @@ function CreateGame() {
   });
 
   useEffect(() => console.log("Im in create"));
+  useEffect(() => console.log('GENRES IS: ', genres), []);
+  useEffect(function() {
+    if (genres.length === 0) {
+      getGenres();
+    }
+  }, []);
+  useEffect(() => console.log(genres), []);
+
 
   let platforms = [
     'PC',
-    'Playstation 1',
-    'Playstation 2',
     'Playstation 3',
     'Playstation 4',
     'Playstation 5',
     'Xbox',
     'Xbox One',
     'Wii',
-  ];
-
-  let genres = [
-    'Adventure',
-    'Action',
-    'RPG',
-    'FPS',
-    'MMOG',
+    'Nintendo switch',
   ];
 
   function showGenres() {
@@ -91,23 +94,26 @@ function CreateGame() {
           <div className='inner'>
             <label>Genre:</label>
 
-            {genres.map( g => {
-              return (<div className='sel'>
-                <input
-                  type='checkbox'
-                  name={g}
-                  value={g}
-                  id={'id_' + g}
-                />
-                <span className='circle'></span>
-                <label htmlFor={g} >{g}</label>
-              </div>)})
-            }
+            <div className='list'>
+              {Array.isArray(genres) && genres.map( g => {
+                return (<div className='sel'>
+                  <input
+                    type='checkbox'
+                    name={g}
+                    value={g}
+                    id={'id_' + g}
+                  />
+                  <span className='circle'></span>
+                  <label htmlFor={g} >{g}</label>
+                </div>)})
+              }
+            </div>
             <label htmlFor='otherGenre'>Other:</label>
             <input
               type='text'
               name='otherGenre'
               placeholder='new genre'
+              size='35'
             />
             <span className='add'>Add</span>
             <span className='ok' onClick={hideGenres}>Ok</span>
@@ -119,24 +125,27 @@ function CreateGame() {
           <div className='inner'>
             <label>Platforms:</label>
 
-            {platforms.map( p => {
-              return (<div className='sel'>
-                <input
-                  type='checkbox'
-                  name={p}
-                  value={p}
-                  id={'id_' + p}
-                />
-                <span className='circle'></span>
-                <label htmlFor={p} >{p}</label>
-              </div>)})
-            }
+            <div className='list'>
+              {platforms.map( p => {
+                return (<div className='sel'>
+                  <input
+                    type='checkbox'
+                    name={p}
+                    value={p}
+                    id={'id_' + p}
+                  />
+                  <span className='circle'></span>
+                  <label htmlFor={p} >{p}</label>
+                </div>)})
+              }
+            </div>
             <div>
               <label htmlFor='otherPlatform'>Other</label>
               <input
                 type='text'
                 name='otherPlatform'
                 placeholder='new platform'
+                size='35'
               />
               <span className='add'>Add</span>
             </div>
@@ -159,4 +168,15 @@ function CreateGame() {
   );
 }
 
-export default CreateGame;
+function mapStateToProps(state) {
+  return {
+    loading: state.loading,
+    genres: state.genres,
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators(actionCreators, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(CreateGame);

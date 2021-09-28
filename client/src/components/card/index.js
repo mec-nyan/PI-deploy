@@ -1,8 +1,11 @@
 import './card.css';
 import { NavLink } from 'react-router-dom';
+import noBg from './img/no_bg.png';
 
 
 function Card({ id, title, genres, rating, background }) {
+
+  background = background || noBg;
 
   return (
     <div className='card'>

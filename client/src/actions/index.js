@@ -98,6 +98,42 @@ function fullPreload() {
   }
 }
 
+function postGame(data) {
+  console.log('Posting new game');
+  return dispatch => {
+    dispatch(postStart());
+    axios.post(`http://localhost:3001/videogame`, data)
+      .then(r => console.log(r))
+      .then(() => dispatch(postEnd()))
+      .catch(e => console.log('error in postGame: ', e));
+  }
+}
+
+function getPlatforms() {
+  console.log('Getting platforms');
+  return dispatch => {
+    axios.get(`http://localhost:3001/platforms`)
+      .then(r => r.data)
+      .then(d => dispatch({ type: constants.GET_PLATFORMS, payload: d}))
+      .catch(e => console.log('Error in "getPlatforms"', e));
+  }
+}
+
+function getGenres() {
+  console.log('Getting genres');
+  return dispatch => {
+    axios.get(`http://localhost:3001/genres`)
+      .then(r => r.data)
+      .then(d => {
+        console.log('DATA IS ', d);
+        return d;
+      })
+      .then(d => dispatch({ type: constants.GET_GENRES, payload: d}))
+      .catch(e => console.log('Error in "getGenres">>', e));
+  }
+}
+
+
 export {
   orderByRating,
   orderByName,
@@ -110,10 +146,13 @@ export {
   getEnd,
   postStart,
   postEnd,
+  postGame,
   next,
   getData,
   getDetails,
   preLoad,
   fullPreload,
   setFrom,
+  getGenres,
+  getPlatforms,
 }

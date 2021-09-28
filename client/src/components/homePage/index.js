@@ -15,17 +15,18 @@ import { useEffect } from 'react';
 function Home({ preLoad, games, fullPreload }) {
 
   // >> Load games for the first time
-  /*
   useEffect(function() {
-    let id = 1;
-    while (id < 100) {
-      console.log(`add game '${id}'`);
-      preLoad(id);
-      ++id;
+    if (games.length === 0) {
+      let id = 1;
+      while (id < 100) {
+        console.log(`add game '${id}'`);
+        preLoad(id);
+        ++id;
+      }
     }
   }, []);
-  */ 
-  useEffect(() => (games.length === 0) && fullPreload(), []);
+
+  //useEffect(() => (games.length === 0) && fullPreload(), []);
 
 
   return (

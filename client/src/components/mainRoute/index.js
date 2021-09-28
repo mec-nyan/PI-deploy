@@ -70,8 +70,8 @@ function MainPage({ loading, games, from, setFrom, orderBy, filterBy, ascending 
         <button onClick={prev} title='previous'>&lt;</button>
         <button onClick={next} title='next'>&gt;</button>
       </div>
-
-      {loading ? <div className='mainView'><h1 className='loading'>Loading . . .</h1></div> :
+      {/* I'm using 'games.length' instead of 'loading' to speed up testing */}
+      {games.length < 15 ? <div className='mainView'><h1 className='loading'>Loading . . .</h1></div> :
       <div className='mainView'>
         {games.slice(from, from + state.count).map( g => (<Card genres={g.genres.join(', ')} title={g.name} rating={g.rating} background={g.image} id={g.id} key={g.id} />))}
       </div>}

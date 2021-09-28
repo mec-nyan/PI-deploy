@@ -3,6 +3,10 @@ import * as actions from '../constants';
 
 const initialState = {
   games: [],
+  genres: [],
+  platforms: [],
+  searchResult: [],
+  search: false,
   detail: {},
   loading: false,
   loadingDetails: false,
@@ -70,6 +74,10 @@ function rootReducer(state = initialState, action) {
       return { ...state, next: action.payload };
     case actions.FROM:
       return { ...state, from: action.payload };
+    case actions.GET_GENRES:
+      return { ...state, genres: action.payload.genres };
+    case actions.GET_PLATFORMS:
+      return { ...state, platforms: action.payload };
     default:
       return state;
   }

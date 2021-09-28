@@ -4,6 +4,7 @@ import { NavLink } from 'react-router-dom';
 import * as actionCreators from '../../actions';
 import { bindActionCreators } from 'redux';
 import { connect, useDispatch } from 'react-redux';
+import noBg from './img/no_bg.png';
 
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
@@ -26,6 +27,7 @@ function GameDetail({ detail, loadingDetails, getDetails }) {
     console.log(loadingDetails);
 
     let { name, description, released, rating, image, platforms, genres } = detail;
+    image = image || noBg;
     if (description) {
       description = description.replaceAll('<p>', '').replaceAll('</p>', '').split('<br />');
       return (
