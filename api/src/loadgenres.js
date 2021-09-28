@@ -2,7 +2,7 @@ const process = require('process');
 require('dotenv').config();
 const axios = require('axios');
 const { KEY } = process.env;
-const { Genre } = require('../src/db');
+const { Genre, Videogame } = require('../src/db');
 
 /* 
  * We can use only these routes:
@@ -29,7 +29,7 @@ async function load() {
     for (let gd of genreData) {
       let [ genre, created ] = await Genre.findOrCreate({
         where: {
-          id: gd.id,
+          //id: gd.id,
           name: gd.name,
           slug: gd.slug,
         }
@@ -46,8 +46,5 @@ async function load() {
   }
 }
 
-// test it
-//load();
-// It works!
 
 module.exports = load;

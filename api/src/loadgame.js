@@ -7,38 +7,129 @@ const url = ' https://api.rawg.io/api/games';
 const { Videogame, Genre, Platform } = require('../src/db');
 
 
-module.exports = async function (_id) {
-  try {
-    // >> fetch the data
-    const gameData = await axios.get(`${url}/${_id}?key=${KEY}`);
-    // >> Get the needed information
-    let { id, slug, name, description, released, rating, genres, platforms } = gameData.data;
-    // >> Create the game entry on the table
-    let game = await Videogame.create({ rawgId: id, name, slug, released, rating, description });
-    console.log(`Game [ ${game.name} ] has been added to the table "Videogame"`);
-    // >> Get list of genres
-    await bindGenre(game, genres);
-    // >> Get list of platforms
-    await bindPlatform(game, platforms);
+//>> mockup games for testing
+const games = [
+  { 
+    name: 'mario',
+    description: 'bros',
+    released: 'today',
+    rating: 1.2 ,
+    genres: ['Accion', 'Aventura', 'Romance'],
+    platforms: ['ps2', 'xbox', 'wii']
+  },
+  { 
+    name: 'pacman',
+    description: 'rules',
+    released: 'yesterday',
+    rating: 1.2 ,
+    genres: ['Accion', 'Aventura', 'Romance'],
+    platforms: ['ps2', 'xbox', 'wii']
+  },
+  { 
+    name: 'tateti',
+    description: 'clasico',
+    released: 'tomorrow',
+    rating: 1.2 ,
+    genres: ['Accion', 'Aventura', 'Romance'],
+    platforms: ['ps2', 'xbox', 'wii']
+  },
+  { 
+    name: 'ajedrez',
+    description: 'ni en pedo',
+    released: 'hoy',
+    rating: 1.2 ,
+    genres: ['Accion', 'Aventura', 'Romance'],
+    platforms: ['ps2', 'xbox', 'wii']
+  },
+  { 
+    name: 'rayuela',
+    description: 'wtf',
+    released: 'ayer',
+    rating: 1.2 ,
+    genres: ['Accion', 'Aventura', 'Romance'],
+    platforms: ['ps2', 'xbox', 'wii']
+  },
+  { 
+    name: 'chin chon',
+    description: 'cartas',
+    released: 'anteayer',
+    rating: 1.2 ,
+    genres: ['Accion', 'Aventura', 'Romance'],
+    platforms: ['ps2', 'xbox', 'wii']
+  },
+  { 
+    name: 'canasta',
+    description: 'genial',
+    released: 'last month',
+    rating: 1.2 ,
+    genres: ['Accion', 'Aventura', 'Romance'],
+    platforms: ['ps2', 'xbox', 'wii']
+  },
+  { 
+    name: 'scrabble',
+    description: 'buenisimo',
+    released: 'sometime',
+    rating: 1.2 ,
+    genres: ['Accion', 'Aventura', 'Romance'],
+    platforms: ['ps2', 'xbox', 'wii']
+  },
+  { 
+    name: 'truco',
+    description: 'puede fallar',
+    released: '???',
+    rating: 1.2 ,
+    genres: ['Accion', 'Aventura', 'Romance'],
+    platforms: ['ps2', 'xbox', 'wii']
+  },
+  { 
+    name: 'payana',
+    description: 'son duras las piedras',
+    released: 'una vez',
+    rating: 1.2 ,
+    genres: ['Accion', 'Aventura', 'Romance'],
+    platforms: ['ps2', 'xbox', 'wii']
+  },
+  { 
+    name: 'trompo',
+    description: 'piola',
+    released: 'jajaja',
+    rating: 1.2 ,
+    genres: ['Accion', 'Aventura', 'Romance'],
+    platforms: ['ps2', 'xbox', 'wii']
+  },
+];
 
-    return true;
-  } catch (error) {
-    console.log('[[(( error ))]]');
-    //console.log(error);
-    return false;
+
+async function loadGames() {
+  for (let g of games) {
+    try {
+      let game = await Videogame.create({
+        name: g.name,
+        description: g.description,
+        released: g.released,
+        rating: g.rating,
+      });
+
+      await bindGenre(game, g.genres);
+
+      await bindPlatform(game, g.platforms);
+
+    } catch (err) {
+      console.log('Oooooops');
+      return false;
+    }
   }
+  return true;
 }
 
 
 async function bindGenre(game, genres) {
   // >> Get list of genres
-  let genreData = genres.map( g => ({ id: g.id, name: g.name, slug: g.slug }));
-  for (let gd of genreData) {
+  for (let gd of genres) {
     let [ genre, created ] = await Genre.findOrCreate({
       where: {
-        id: gd.id,
-        name: gd.name,
-        slug: gd.slug,
+        name: gd,
+        slug: gd.toLowerCase(),
       }
     });
     await game.addGenre(genre); // Is 'await' necesary?
@@ -48,16 +139,19 @@ async function bindGenre(game, genres) {
 
 async function bindPlatform(game, platforms) {
   // >> Get list of platforms
-  let platformData = platforms.map( p => ({ id: p.platform.id, name: p.platform.name, slug: p.platform.slug }));
-  for (let pd of platformData) {
+  for (let pd of platforms) {
     let [ platform, created ] = await Platform.findOrCreate({
       where: {
-        id: pd.id,
-        name: pd.name,
-        slug: pd.slug,
+        name: pd,
+        slug: pd.toLowerCase(),
       }
     });
     await game.addPlatform(platform); // Is 'await' necesary?
     console.log(`\tPlatform [ ${platform.name} ] has been linked to "${game.name}`);
   }
 }
+
+module.exports = loadGames;
+
+// test 
+loadGames();

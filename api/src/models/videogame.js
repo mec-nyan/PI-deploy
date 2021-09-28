@@ -3,16 +3,14 @@ const { DataTypes } = require('sequelize');
 // Game
 module.exports = (sequelize) => {
   sequelize.define('videogame', {
-    //id: {
-      //type: DataTypes.INTEGER,
-      //primaryKey: true,
-    //},
+    id: {
+      type: DataTypes.UUID,
+      primaryKey: true,
+      defaultValue: DataTypes.UUIDV4
+    },
     name: {
       type: DataTypes.STRING,
       allowNull: false,
-    },
-    slug: {
-      type: DataTypes.STRING,
     },
     description: {
       type: DataTypes.TEXT,
@@ -24,15 +22,5 @@ module.exports = (sequelize) => {
     rating: {
       type: DataTypes.FLOAT,
     },
-    rawgId: {
-      type: DataTypes.INTEGER,
-      allowNull: true,
-    },
-    /*
-     * creo que platforms debe tener su propia tabla
-    platforms: {
-
-    },
-    */ 
   });
 };
