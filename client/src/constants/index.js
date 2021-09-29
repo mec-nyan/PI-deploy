@@ -16,6 +16,8 @@ const NEXT = 'NEXT';
 const FROM = 'FROM';
 const GET_PLATFORMS = 'GET_PLATFORMS';
 const GET_GENRES = 'GET_GENRES';
+const RESET = 'RESET';
+const FIND_BY_NAME = 'FIND_BY_NAME';
 
 
 export {
@@ -37,4 +39,6 @@ export {
   FROM,
   GET_PLATFORMS,
   GET_GENRES,
+  RESET,
+  FIND_BY_NAME,
 };

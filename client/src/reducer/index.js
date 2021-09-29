@@ -78,6 +78,15 @@ function rootReducer(state = initialState, action) {
       return { ...state, genres: action.payload.genres };
     case actions.GET_PLATFORMS:
       return { ...state, platforms: action.payload };
+    case actions.FIND_BY_NAME:
+      return { 
+        ...state, 
+        searchResult: action.payload, 
+        loading: false,
+        search: true,
+      };
+    case actions.RESET:
+      return { ...state, search: false };
     default:
       return state;
   }

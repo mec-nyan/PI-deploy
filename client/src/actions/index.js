@@ -54,6 +54,10 @@ function setFrom(n) {
   return { type: constants.FROM, payload: n };
 }
 
+function reset() {
+  return { type: constants.RESET };
+}
+
 function getDetails(id) {
   console.log('fetching details');
   return dispatch => {
@@ -133,6 +137,17 @@ function getGenres() {
   }
 }
 
+function findByName(name) {
+  console.log('Searching by name');
+  return dispatch => {
+    dispatch({ type: constants.GET_START });
+    axios.get(`http://localhost:3001/videogames?name=${name}`)
+      .then(r => r.data)
+      .then(d  => dispatch({ type: constants.FIND_BY_NAME, payload: d }))
+      .catch(() => console.log('axios error in function "findByName"'));
+  }
+}
+
 
 export {
   orderByRating,
@@ -155,4 +170,6 @@ export {
   setFrom,
   getGenres,
   getPlatforms,
+  findByName,
+  reset,
 }

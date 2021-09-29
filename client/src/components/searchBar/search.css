@@ -74,6 +74,11 @@
   cursor: pointer;
 }
 
+.searchForm input[type=submit]
+{
+  display: none;
+}
+
 .searchForm label:hover 
 {
   background-color: #BC5FD3;

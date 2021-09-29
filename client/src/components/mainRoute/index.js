@@ -10,7 +10,7 @@ import { connect } from 'react-redux';
 
 import { useState, useEffect } from 'react';
 
-function MainPage({ loading, games, from, setFrom, orderBy, filterBy, ascending }) {
+function MainPage({ loading, games, from, setFrom, orderBy, filterBy, ascending, search, searchResult }) {
   //>> We're gonna use the redux state (pre loaded games)
   //>> and filter from here
 
@@ -22,20 +22,29 @@ function MainPage({ loading, games, from, setFrom, orderBy, filterBy, ascending 
     external: true,
   });
 
+  let list;
+  //>> choose what we will show
+  if (search) {
+    list = searchResult;
+  } else {
+    list = games;
+  }
+
   //>> Order the array
   if (orderBy === 'name') {
     if (ascending) {
-      games.sort((o, p) => o.name < p.name ? -1 : 1);
+      list.sort((o, p) => o.name < p.name ? -1 : 1);
     } else {
-      games.sort((o, p) => o.name > p.name ? -1 : 1);
+      list.sort((o, p) => o.name > p.name ? -1 : 1);
     }
   } else if (orderBy === 'rating') {
     if (ascending) {
-      games.sort((o, p) => p.rating - o.rating);
+      list.sort((o, p) => p.rating - o.rating);
     } else {
-      games.sort((o, p) => o.rating - p.rating);
+      list.sort((o, p) => o.rating - p.rating);
     }
   }
+
 
   function next() {
     if (from + state.count < games.length - 1) 
@@ -50,6 +59,7 @@ function MainPage({ loading, games, from, setFrom, orderBy, filterBy, ascending 
   function reset() {
     setFrom(0);
   }
+
 
   return (
     <div className='main'>
@@ -71,9 +81,9 @@ function MainPage({ loading, games, from, setFrom, orderBy, filterBy, ascending 
         <button onClick={next} title='next'>&gt;</button>
       </div>
       {/* I'm using 'games.length' instead of 'loading' to speed up testing */}
-      {games.length < 15 ? <div className='mainView'><h1 className='loading'>Loading . . .</h1></div> :
+      {list.length < 1 ? <div className='mainView'><h1 className='loading'>Loading . . .</h1></div> :
       <div className='mainView'>
-        {games.slice(from, from + state.count).map( g => (<Card genres={g.genres.join(', ')} title={g.name} rating={g.rating} background={g.image} id={g.id} key={g.id} />))}
+        {list.slice(from, from + state.count).map( g => (<Card genres={g.genres.join(', ')} title={g.name} rating={g.rating} background={g.image} id={g.id} key={g.id} />))}
       </div>}
 
     </div> 
@@ -88,6 +98,8 @@ function mapStateToProps(state) {
     orderBy: state.orderBy,
     filterBy: state.filterBy,
     ascending: state.ascending,
+    search: state.search,
+    searchResult: state.searchResult,
   };
 }
 
