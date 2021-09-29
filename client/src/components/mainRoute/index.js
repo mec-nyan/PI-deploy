@@ -22,6 +22,30 @@ function MainPage({ loading, games, from, setFrom, orderBy, filterBy, ascending,
     external: true,
   });
 
+  let options = [
+    'None',
+    'your games',
+    'Action',
+    'Indie',
+    'Adventure',
+    'RPG',
+    'Strategy',
+    'Shooter',
+    'Casual',
+    'Simulation',
+    'Puzzle',
+    'Arcade',
+    'Platformer',
+    'Racing',
+    'Massively Multiplayer',
+    'Sports',
+    'Fighting',
+    'Family',
+    'Board Games',
+    'Educational',
+    'Card',
+  ];
+
   let list;
   //>> choose what we will show
   if (search) {
@@ -43,6 +67,21 @@ function MainPage({ loading, games, from, setFrom, orderBy, filterBy, ascending,
     } else {
       list.sort((o, p) => o.rating - p.rating);
     }
+  }
+
+  //>> Filter the array
+  console.log('filter: ', filterBy);
+  console.log(list);
+  switch (filterBy) {
+    case 'None':
+      list = list;
+      break;
+    case 'your games':
+      list = list.filter(o => o.id.length > 7);
+      break;
+    default:
+      list = list.filter(o => o.genres.includes(filterBy));
+      break
   }
 
 
@@ -71,7 +110,7 @@ function MainPage({ loading, games, from, setFrom, orderBy, filterBy, ascending,
         <div className='buttons'>
           <Selector text='Order by:' options={['a-z', 'rating']} />
           <ArrowSelector />
-          <Selector text='Filter by:' options={['None', 'genre', 'created by']} />
+          <Selector text='Filter by:' options={options} />
         </div>
       </div>
 

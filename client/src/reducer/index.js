@@ -11,7 +11,7 @@ const initialState = {
   loading: false,
   loadingDetails: false,
   orderBy: 'name',
-  filterBy: 'external',
+  filterBy: 'None',
   ascending: true,
   from: 0,
   next: 0,
@@ -33,6 +33,8 @@ function rootReducer(state = initialState, action) {
       return { ...state, filterBy: 'external' };
     case actions.FILTER_LOCAL:
       return { ...state, filterBy: 'local' };
+    case actions.FILTER_BY:
+      return { ...state, filterBy: action.payload };
     case actions.GET_START:
       return { ...state, loading: true };
     case actions.GET_END:

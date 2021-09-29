@@ -30,6 +30,10 @@ function filterLocal() {
   return { type: constants.FILTER_LOCAL };
 }
 
+function setFilter(f) {
+  return { type: constants.FILTER_BY, payload: f };
+}
+
 function getStart() {
   return { type: constants.GET_START };
 }
@@ -157,6 +161,7 @@ export {
   orderToggle,
   filterLocal,
   filterApi,
+  setFilter,
   getStart,
   getEnd,
   postStart,

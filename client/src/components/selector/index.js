@@ -7,7 +7,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 
-function Selector({ text, options, orderByName, orderByRating, filterApi, filterLocal, setFrom }) {
+function Selector({ text, options, orderByName, orderByRating, setFilter, setFrom }) {
 
   const [ state, setState ] = useState({
     hidden: 'hidden',
@@ -30,12 +30,28 @@ function Selector({ text, options, orderByName, orderByRating, filterApi, filter
         orderByRating();
         setFrom(0);
         break;
-      case 'genre':
-        filterApi();
-        setFrom(0);
-        break;
-      case 'local':
-        filterLocal();
+      case 'None':
+      case 'your games':
+      case 'Action':
+      case 'Indie':
+      case 'Adventure':
+      case 'RPG':
+      case 'Strategy':
+      case 'Shooter':
+      case 'Casual':
+      case 'Simulation':
+      case 'Puzzle':
+      case 'Arcade':
+      case 'Platformer':
+      case 'Racing':
+      case 'Massively Multiplayer':
+      case 'Sports':
+      case 'Fighting':
+      case 'Family':
+      case 'Board Games':
+      case 'Educational':
+      case 'Card':
+        setFilter(option);
         setFrom(0);
         break;
     }

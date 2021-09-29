@@ -15,6 +15,7 @@ import { useEffect } from 'react';
 function Home({ preLoad, games, fullPreload }) {
 
   // >> Load games for the first time
+  /*
   useEffect(function() {
     if (games.length === 0) {
       let id = 1;
@@ -25,8 +26,9 @@ function Home({ preLoad, games, fullPreload }) {
       }
     }
   }, []);
+  */
 
-  //useEffect(() => (games.length === 0) && fullPreload(), []);
+  useEffect(() => (games.length === 0) && fullPreload(), []);
 
 
   return (
