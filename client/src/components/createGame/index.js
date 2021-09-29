@@ -15,9 +15,23 @@ function CreateGame({ genres, getGenres, loading, postGame }) {
     description: '',
     rating: '',
     released: '',
+    message: '',
     showGenres: false,
     showPlatforms: false,
   });
+
+  function resetState() {
+    setState({
+      ...state,
+      genres: [],
+      platforms: [],
+      name: '',
+      description: '',
+      rating: '',
+      released: '',
+      message: '',
+    });
+  }
 
   useEffect(() => console.log("Im in create"));
   //useEffect(() => console.log('GENRES IS: ', genres), []);
@@ -91,7 +105,8 @@ function CreateGame({ genres, getGenres, loading, postGame }) {
     });
   }
 
-  function submitPost() {
+  function submitPost(e) {
+    e.preventDefault();
     let game = {
       name: state.name,
       description: state.description,
@@ -102,12 +117,16 @@ function CreateGame({ genres, getGenres, loading, postGame }) {
     };
 
     if (game.name.length === 0) {
-      alert('Field "name" is empty!');
+      setState({ ...state, message: 'Field name cannot be empty!' });
       return;
     } else {
       postGame(game);
-      alert(`Game "${game.name}" was added!`);
+      setState({ ...state, message: `Game ${game.name} successfully created!` });
     }
+  }
+
+  function hideMessage() {
+    resetState();
   }
 
 
@@ -234,6 +253,14 @@ function CreateGame({ genres, getGenres, loading, postGame }) {
         <span>Back</span> 
       </NavLink>
 
+      {state.message.length > 0 &&
+        <div className='popupMessage' onClick={hideMessage}>
+          <div>
+            <span>x</span>
+            <span>{state.message}</span>
+          </div>
+        </div>
+      }
     </div>
   );
 }

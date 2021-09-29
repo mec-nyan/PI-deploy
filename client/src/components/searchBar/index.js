@@ -8,7 +8,7 @@ import { useState, useEffect } from 'react';
 import { Redirect } from 'react-router-dom';
 
 
-function SearchBar({ findByName, reset, search, searchResult, history }) {
+function SearchBar({ findByName, reset, search, searchResult, setFrom }) {
 
   const [ state, setState ] = useState({
     isearch: '',
@@ -21,6 +21,7 @@ function SearchBar({ findByName, reset, search, searchResult, history }) {
     if (state.isearch.length > 0) {
       setState({ ...state, text: 'Clear' });
       findByName(state.isearch);
+      setFrom(0);
       console.log(searchResult);
     } else {
       console.log('search bar is empty!');
