@@ -1,6 +1,6 @@
 .side 
 {
-  width: 200px;
+  width: 250px;
   background-color: transparent;
   color: #777;
   display: flex;
@@ -31,9 +31,14 @@
   list-style: none;
 }
 
+.side ul li 
+{
+  padding: 5px 0px;
+}
+
 .lineSide 
 {
-  width: 40%;
+  width: 20%;
   height: 1px;
   margin: 20px 30%;
   background-color: #444;

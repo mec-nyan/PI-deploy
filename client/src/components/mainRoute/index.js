@@ -116,6 +116,7 @@ function MainPage({ loading, games, from, setFrom, orderBy, filterBy, ascending,
 
       <div className='prevNext'>
         <button onClick={reset} title='top'>^</button>
+        <span>{from + 1} - {from + state.count}</span>
         <button onClick={prev} title='previous'>&lt;</button>
         <button onClick={next} title='next'>&gt;</button>
       </div>
@@ -125,6 +126,11 @@ function MainPage({ loading, games, from, setFrom, orderBy, filterBy, ascending,
         {list.slice(from, from + state.count).map( g => (<Card genres={g.genres.join(', ')} title={g.name} rating={g.rating} background={g.image} id={g.id} key={g.id} />))}
       </div>}
 
+      <div className='prevNext'>
+        <button onClick={reset} title='top'>^</button>
+        <button onClick={prev} title='previous'>&lt;</button>
+        <button onClick={next} title='next'>&gt;</button>
+      </div>
     </div> 
   );
 }

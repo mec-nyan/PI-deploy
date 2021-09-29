@@ -49,6 +49,17 @@
   cursor: pointer;
 }
 
+.prevNext span 
+{
+  padding: 0px 6px;
+  height: 30px;
+  line-height: 30px;
+  font-size: 18px;
+  color: #666;
+  border: 1px solid transparent;
+  border-bottom: 1px solid #892CA0;
+}
+
 .prevNext button:hover 
 {
   background-color: #444;
