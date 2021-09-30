@@ -7,7 +7,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 
-function Selector({ text, options, orderByName, orderByRating, setFilter, setFrom }) {
+function Selector({ text, options, now, orderByName, orderByRating, setFilter, setFrom }) {
 
   const [ state, setState ] = useState({
     hidden: 'hidden',
@@ -60,12 +60,12 @@ function Selector({ text, options, orderByName, orderByRating, setFilter, setFro
   return (
     <div className='selector' >
       <div className='text'>
-        <span onClick={showPopup}>{text} {state.selection}</span>
+        <span onClick={showPopup}>{text} {now}</span>
       </div>
 
       <div className={state.hidden + ' popup'}>
         {options.map( o => 
-          <div className={'selection' + (state.selection === o ? ' selected': '')} onClick={e => Select(e)}>{o}</div>
+          <div className={'selection' + (now === o ? ' selected': '')} onClick={e => Select(e)}>{o}</div>
         )}
       </div>
     </div>

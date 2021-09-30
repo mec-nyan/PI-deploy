@@ -13,7 +13,7 @@ function CreateGame({ genres, getGenres, loading, postGame }) {
     platforms: [],
     name: '',
     description: '',
-    rating: '',
+    rating: '0.0',
     released: '',
     message: '',
     showGenres: false,
@@ -27,7 +27,7 @@ function CreateGame({ genres, getGenres, loading, postGame }) {
       platforms: [],
       name: '',
       description: '',
-      rating: '',
+      rating: '0.0',
       released: '',
       message: '',
     });
@@ -40,6 +40,7 @@ function CreateGame({ genres, getGenres, loading, postGame }) {
       getGenres();
     }
   }, []);
+  useEffect(() => window.scrollTo(0, 0), []);
 
 
   let platforms = [

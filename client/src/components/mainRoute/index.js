@@ -16,6 +16,7 @@ function MainPage({ loading, games, from, setFrom, orderBy, filterBy, ascending,
 
   //useEffect(getData, []);
   useEffect(() => console.log("i'm in main"));
+  useEffect(() => window.scrollTo(0, 0), []);
   
   const [ state, setState ] = useState({
     count: 15,
@@ -108,9 +109,9 @@ function MainPage({ loading, games, from, setFrom, orderBy, filterBy, ascending,
           <NavLink id='newgame' to='/main/create'>Add new game</NavLink>
         </div>
         <div className='buttons'>
-          <Selector text='Order by:' options={['a-z', 'rating']} />
+          <Selector text='Order by:' options={['a-z', 'rating']} now={orderBy} />
           <ArrowSelector />
-          <Selector text='Filter by:' options={options} />
+          <Selector text='Filter by:' options={options} now={filterBy} />
         </div>
       </div>
 

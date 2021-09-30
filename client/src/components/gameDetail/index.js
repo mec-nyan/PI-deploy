@@ -18,6 +18,7 @@ function GameDetail({ detail, loadingDetails, getDetails }) {
 
   useEffect(() => console.log('wtf'));
   useEffect(() => getDetails(id), []);
+  useEffect(() => window.scrollTo(0, 0), []);
   
 
   if (loadingDetails) {
@@ -26,10 +27,14 @@ function GameDetail({ detail, loadingDetails, getDetails }) {
   } else {
     console.log(loadingDetails);
 
-    let { name, description, released, rating, image, platforms, genres } = detail;
-    image = image || noBg;
-    if (description) {
-      description = description.replaceAll('<p>', '').replaceAll('</p>', '').split('<br />');
+    if (detail.name) {
+      let { name, description, released, rating, image, platforms, genres } = detail;
+      image = image || noBg;
+      if (description) {
+        description = description.replaceAll('<p>', '').replaceAll('</p>', '').split('<br />');
+      } else {
+        description = ['No description available.'];
+      }
       return (
         <>
         <div className='detail'>
