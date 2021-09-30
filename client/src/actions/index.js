@@ -111,7 +111,8 @@ function postGame(data) {
   return dispatch => {
     dispatch(postStart());
     axios.post(`http://localhost:3001/videogame`, data)
-      .then(r => console.log(r))
+      .then(r => r.data)
+      .then(d => dispatch({ type: constants.PRELOAD, payload: d }))
       .then(() => dispatch(postEnd()))
       .catch(e => console.log('error in postGame: ', e));
   }
