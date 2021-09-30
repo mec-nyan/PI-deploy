@@ -87,17 +87,22 @@ function MainPage({ loading, games, from, setFrom, orderBy, filterBy, ascending,
 
 
   function next() {
-    if (from + state.count < games.length - 1) 
+    if (from + state.count < list.length - 1) {
       setFrom(from + state.count);
+      window.scrollTo(0, 0);
+    }
   }
 
   function prev() {
-    if (from > 0)
+    if (from > 0) {
       setFrom(from - state.count);
+      window.scrollTo(0, 0);
+    }
   }
   
   function reset() {
     setFrom(0);
+    window.scrollTo(0, 0);
   }
 
 
@@ -127,7 +132,7 @@ function MainPage({ loading, games, from, setFrom, orderBy, filterBy, ascending,
         {list.slice(from, from + state.count).map( g => (<Card genres={g.genres.join(', ')} title={g.name} rating={g.rating} background={g.image} id={g.id} key={g.id} />))}
       </div>}
 
-      <div className='prevNext'>
+      <div className='prevNextBottom prevNext'>
         <button onClick={reset} title='top'>^</button>
         <span>{from + 1} - {from + state.count}</span>
         <button onClick={prev} title='previous'>&lt;</button>
