@@ -55,52 +55,16 @@ router.get('/:id', async function(req, res) {
   }
   return res.status(404).json({msg: 'not found'});
 });
-/*
-router.get('/:_id', async function(req, res) {
-  // GET /videogame/{idVideogame}:
-  // Obtener el detalle de un videojuego en particular
-  // Debe traer solo los datos pedidos en la ruta de detalle de videojuego
-  // Incluir los géneros asociados
-  let { _id } = req.params;
-  _id = parseInt(_id);
-  let { local } = req.query;
-  let game;
 
-  try {
-    if (local) {
-       game = await Videogame.findByPk(_id, { include: Genre });
-    } else {
-      // >> check that the game hasn't been already stored
-      game = await Videogame.findOne({ where: { rawgId: _id }, include: Genre });
-      if (!game) {
-        await load(_id);
-        game = await Videogame.findOne({ where: { rawgId: _id }, include: Genre });
-      }
-    }
-  } catch (err) {
-    res.status(404).json(err);
-  }
-
-  if (game) { // >> game will be null if findByPk fails
-    let { id, name, released, rating, genres } = game;
-    genres = genres.map( g => ({ id: g.id, name: g.name, slug: g.slug }));
-    return res.json({ route: 'videogames', params: {id}, details: { id, name, released, rating, genres } });
-  } else {
-    return res.status(404).json({msg: 'shit happens bro'});
-  }
-});
-*/
 
 router.post('/', async function(req, res) {
   // POST /videogame:
   // Recibe los datos recolectados desde el formulario controlado de la ruta de creación de videojuego por body
   // Crea un videojuego en la base de datos
   let { name, rating, description, released, genres, platforms } = req.body;
-  //console.log('body: ', req.body);
-  //console.log('params: ', req.params);
-  //console.log('queries: ', req.query);
+  let game;
   try {
-    let game = await Videogame.create({
+    game = await Videogame.create({
       name: name,
       description: description,
       released: released,
@@ -112,11 +76,19 @@ router.post('/', async function(req, res) {
     await bindPlatform(game, platforms);
 
   } catch (err) {
-    console.log('Oooooops');
+    console.log('Oops! Error in "POST": Failed to create game.');
     return false;
   }
 
-  return res.status(200).json({msg: 'game created with', name, rating, description, genres, platforms});
+  let out = {
+    id: game.id,
+    name, 
+    rating,
+    genres,
+    image: null,
+  };
+
+  return res.status(201).json(out);
 });
 
 
