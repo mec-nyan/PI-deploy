@@ -5,7 +5,7 @@ import * as actionCreators from '../../actions';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { useState, useEffect } from 'react';
-import { Redirect } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
 
 function SearchBar({ findByName, reset, search, searchResult, setFrom }) {
@@ -16,12 +16,15 @@ function SearchBar({ findByName, reset, search, searchResult, setFrom }) {
     redirect: false,
   });
 
+  const history = useHistory();
+
   function findIt(e) {
     e.preventDefault();
     if (state.isearch.length > 0) {
       setState({ ...state, text: 'Clear' });
       findByName(state.isearch);
       setFrom(0);
+      history.push('/main');
       console.log(searchResult);
     } else {
       console.log('search bar is empty!');

@@ -128,6 +128,7 @@ function MainPage({ loading, games, from, setFrom, orderBy, filterBy, ascending,
 
       <div className='prevNext'>
         <button onClick={reset} title='top'>^</button>
+        <span>{from + 1} - {from + state.count}</span>
         <button onClick={prev} title='previous'>&lt;</button>
         <button onClick={next} title='next'>&gt;</button>
       </div>

@@ -1,4 +1,3 @@
-// >> Get game info from Rawg and store it locally
 const process = require('process');
 const axios = require('axios');
 require('dotenv').config();
@@ -7,95 +6,98 @@ const url = ' https://api.rawg.io/api/games';
 const { Videogame, Genre, Platform } = require('../src/db');
 
 
+const getGenres = () => {
+  // get 1 - 4 random genres
+  const genres = ['Action', 'Indie', 'Adventure', 'RPG', 'Strategy', 'Shooter', 'Casual', 'Simulation', 'Puzzle', 'Arcade', 'Platformer', 'Racing', 'Massively Multiplayer', 'Sports', 'Fighting', 'Family', 'Board Games', 'Educational', 'Card'];
+  //>> 1 - 4 genres
+  const count = Math.floor(Math.random() * 4) + 1;
+  const out = [];
+  const indices = [];
+  while (indices.length < count) {
+    let i = Math.floor(Math.random() * genres.length);
+    if (indices.includes(i)) continue;
+    out.push(genres[i]);
+    indices.push(i);
+  }
+  return out;
+}
+
+const getPlatforms = () => {
+  // get 1 - 4 random platforms
+  const platforms = [ 'PC', 'Playstation 3', 'Playstation 4', 'Playstation 5', 'Xbox', 'Xbox One', 'Wii', 'Nintendo switch'];
+  //>> 1 - 4 platforms
+  const count = Math.floor(Math.random() * 4) + 1;
+  const out = [];
+  const indices = [];
+  while (indices.length < count) {
+    let i = Math.floor(Math.random() * platforms.length);
+    if (indices.includes(i)) continue;
+    out.push(platforms[i]);
+    indices.push(i);
+  }
+  return out;
+
+}
+
+const placeholder = 'Unirte a Henry significa crear conexiones para toda la vida, hacer nuevos amigos y aprovechar oportunidades globales y diversas. Aplica. Zero To Henry Full Stack Web Developer. Bootcamp. Labs. HenryX. Job Prep. Entrenamiento intensivo en el que vas a aprender de computación y desarrollo web desde el principio hasta el final.';
+
 //>> mockup games for testing
 const games = [
   { 
-    name: 'mario',
-    description: 'bros',
-    released: 'today',
-    rating: 1.2 ,
-    genres: ['Accion', 'Aventura', 'Romance'],
-    platforms: ['ps2', 'xbox', 'wii']
+    name: 'Super Henry Bros',
+    description: placeholder,
+    released: '2021-09-27',
+    rating: 4.2 ,
+    genres: ['Platformer', 'Arcade', 'Puzzle'],
+    platforms: getPlatforms(),
   },
   { 
-    name: 'pacman',
-    description: 'rules',
-    released: 'yesterday',
-    rating: 1.2 ,
-    genres: ['Accion', 'Aventura', 'Romance'],
-    platforms: ['ps2', 'xbox', 'wii']
+    name: 'Canasta',
+    description: 'El juego favorito de mi mamá, junto con el scrabble.',
+    released: '15-8-1940',
+    rating: 6.2 ,
+    genres: ['Card', 'Family'],
+    platforms: getPlatforms(),
   },
   { 
-    name: 'tateti',
-    description: 'clasico',
-    released: 'tomorrow',
-    rating: 1.2 ,
-    genres: ['Accion', 'Aventura', 'Romance'],
-    platforms: ['ps2', 'xbox', 'wii']
+    name: 'Devs May Cry',
+    description: placeholder,
+    released: '4-4-1944',
+    rating: 3.7 ,
+    genres: getGenres(),
+    platforms: getPlatforms(),
   },
   { 
-    name: 'ajedrez',
-    description: 'ni en pedo',
-    released: 'hoy',
-    rating: 1.2 ,
-    genres: ['Accion', 'Aventura', 'Romance'],
-    platforms: ['ps2', 'xbox', 'wii']
+    name: 'Callback of Duty',
+    description: placeholder,
+    released: '15-12-2000',
+    rating: 4.1 ,
+    genres: getGenres(),
+    platforms: getPlatforms(),
   },
   { 
-    name: 'rayuela',
-    description: 'wtf',
-    released: 'ayer',
-    rating: 1.2 ,
-    genres: ['Accion', 'Aventura', 'Romance'],
-    platforms: ['ps2', 'xbox', 'wii']
+    name: 'Recursive Evil II',
+    description: placeholder,
+    released: '23-5-1998',
+    rating: 3.2 ,
+    genres: getGenres(),
+    platforms: getPlatforms(),
   },
   { 
-    name: 'chin chon',
-    description: 'cartas',
-    released: 'anteayer',
-    rating: 1.2 ,
-    genres: ['Accion', 'Aventura', 'Romance'],
-    platforms: ['ps2', 'xbox', 'wii']
+    name: 'Mortal Kallback',
+    description: placeholder,
+    released: '9-11-2005',
+    rating: 2.6 ,
+    genres: getGenres(),
+    platforms: getPlatforms(),
   },
   { 
-    name: 'canasta',
-    description: 'genial',
-    released: 'last month',
-    rating: 1.2 ,
-    genres: ['Accion', 'Aventura', 'Romance'],
-    platforms: ['ps2', 'xbox', 'wii']
-  },
-  { 
-    name: 'scrabble',
-    description: 'buenisimo',
-    released: 'sometime',
-    rating: 1.2 ,
-    genres: ['Accion', 'Aventura', 'Romance'],
-    platforms: ['ps2', 'xbox', 'wii']
-  },
-  { 
-    name: 'truco',
-    description: 'puede fallar',
-    released: '???',
-    rating: 1.2 ,
-    genres: ['Accion', 'Aventura', 'Romance'],
-    platforms: ['ps2', 'xbox', 'wii']
-  },
-  { 
-    name: 'payana',
-    description: 'son duras las piedras',
-    released: 'una vez',
-    rating: 1.2 ,
-    genres: ['Accion', 'Aventura', 'Romance'],
-    platforms: ['ps2', 'xbox', 'wii']
-  },
-  { 
-    name: 'trompo',
-    description: 'piola',
-    released: 'jajaja',
-    rating: 1.2 ,
-    genres: ['Accion', 'Aventura', 'Romance'],
-    platforms: ['ps2', 'xbox', 'wii']
+    name: 'Full Stack Alchemist',
+    description: placeholder,
+    released: '16-8-2011',
+    rating: 3.5 ,
+    genres: getGenres(),
+    platforms: getPlatforms(),
   },
 ];
 
