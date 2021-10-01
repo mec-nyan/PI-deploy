@@ -76,8 +76,11 @@ router.post('/', async function(req, res) {
     await bindPlatform(game, platforms);
 
   } catch (err) {
-    console.log('Oops! Error in "POST": Failed to create game.');
-    return false;
+    //console.log('Oops! Error in "POST": Failed to create game.');
+    //console.log('====================================================');
+    //console.log(err);
+    //console.log('====================================================');
+    return res.status(407).send('Couldn\'t create game');
   }
 
   let out = {
@@ -88,7 +91,7 @@ router.post('/', async function(req, res) {
     image: null,
   };
 
-  return res.status(201).json(out);
+  return res.status(200).json(out);
 });
 
 
