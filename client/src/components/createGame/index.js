@@ -12,12 +12,18 @@ function CreateGame({ genres, getGenres, loading, postGame }) {
     genres: [],
     platforms: [],
     name: '',
+    nameError: '',
+    ratingError: '',
+    releasedError: '',
+    descriptionError: '',
     description: '',
-    rating: '0.0',
+    rating: '',
     released: '',
     message: '',
     showGenres: false,
     showPlatforms: false,
+    otherGenre: '',
+    otherPlatform: '',
   });
 
   function resetState() {
@@ -27,7 +33,7 @@ function CreateGame({ genres, getGenres, loading, postGame }) {
       platforms: [],
       name: '',
       description: '',
-      rating: '0.0',
+      rating: '',
       released: '',
       message: '',
     });
@@ -76,7 +82,38 @@ function CreateGame({ genres, getGenres, loading, postGame }) {
       ...state,
       [e.target.name]: e.target.value,
     });
-    console.log(state[e.target.name]);
+    //console.log(state[e.target.name]);
+  }
+
+  function validate(e) {
+    let error = '';
+    switch (e.target.name) {
+      case 'name':
+      case 'description':
+        if (e.target.value === '') {
+          error = `${e.target.name} can't be empty`;
+        } else {
+          error = '';
+        }
+        break;
+      case 'rating':
+        if (!/^\d+.?\d*$/.test(e.target.value)) {
+          error = 'Rating must be a valid number';
+        } else {
+          error = '';
+        }
+        break;
+      case 'released':
+        if (!/^\d{1,2}-\d{1,2}-\d{4}$/.test(e.target.value)) {
+          error = 'date must be like dd-mm-yyyy';
+        } else {
+          error = '';
+        }
+        break;
+      default:
+        break;
+    }
+    setState({ ...state, [e.target.name]: e.target.value, [e.target.name + 'Error']: error });
   }
 
   function showState(e) {
@@ -106,6 +143,22 @@ function CreateGame({ genres, getGenres, loading, postGame }) {
     });
   }
 
+  function addGenre() {
+    setState({
+      ...state,
+      genres: [ ...state.genres, state.otherGenre ],
+      otherGenre: '',
+    });
+  }
+
+  function addPlatform() {
+    setState({
+      ...state,
+      platforms: [ ...state.platforms, state.otherPlatform ],
+      otherPlatform: '',
+    });
+  }
+
   function submitPost(e) {
     e.preventDefault();
     let game = {
@@ -117,8 +170,15 @@ function CreateGame({ genres, getGenres, loading, postGame }) {
       platforms: state.platforms,
     };
 
-    if (game.name.length === 0) {
-      setState({ ...state, message: 'Field name cannot be empty!' });
+    if (game.name.length === 0
+        || game.description.length === 0 
+        || game.released.length === 0 
+        || game.rating.length === 0
+        || state.nameError.length > 0 
+        || state.releasedError.length > 0 
+        || state.descriptionError.length > 0 
+        || state.ratingError.length > 0) {
+      setState({ ...state, message: 'Please fill the required fields' });
       return;
     } else {
       postGame(game);
@@ -144,37 +204,41 @@ function CreateGame({ genres, getGenres, loading, postGame }) {
           name='name'
           value={state.name}
           placeholder='name...'
-          onChange={handleInputChange}
+          onChange={validate}
         />
+        <div className='errorMessage'><span>{state.nameError}</span></div>
 
         <label htmlFor='released'>Released:</label>
         <input
           type='text'
           name='released'
           value={state.released}
-          placeholder='name...'
-          onChange={handleInputChange}
+          placeholder='released...'
+          onChange={validate}
         />
+        <div className='errorMessage'><span>{state.releasedError}</span></div>
 
         <label htmlFor='rating'>Rating:</label>
         <input
           type='text'
           name='rating'
           value={state.rating}
-          placeholder='name...'
-          onChange={handleInputChange}
+          placeholder='rating...'
+          onChange={validate}
         />
+        <div className='errorMessage'><span>{state.ratingError}</span></div>
 
         <label htmlFor='description'>Description:</label>
         <textarea
           type='text'
           name='description'
           value={state.description}
-          placeholder='name...'
-          onChange={handleInputChange}
+          placeholder='description...'
+          onChange={validate}
           cols='30'
           rows='6'
         />
+        <div className='errorMessage'><span>{state.descriptionError}</span></div>
 
         <span className='selBtn' onClick={showGenres}>Select genre</span>
         <div className={'selectGenre ' + (state.showGenres ? 'selectVisible' : 'selectHidden')}>
@@ -202,8 +266,10 @@ function CreateGame({ genres, getGenres, loading, postGame }) {
               name='otherGenre'
               placeholder='new genre'
               size='35'
+              value={state.otherGenre}
+              onChange={handleInputChange}
             />
-            <span className='add'>Add</span>
+            <span className='add' onClick={addGenre}>Add</span>
             <span className='ok' onClick={hideGenres}>Ok</span>
           </div>
         </div>
@@ -235,11 +301,13 @@ function CreateGame({ genres, getGenres, loading, postGame }) {
                 name='otherPlatform'
                 placeholder='new platform'
                 size='35'
+                value={state.otherPlatform}
+                onChange={handleInputChange}
               />
-              <span className='add'>Add</span>
+              <span className='add' onClick={addPlatform}>Add</span>
             </div>
+            <span className='ok' onClick={hidePlatforms}>Ok</span>
             <div>
-              <span className='ok' onClick={hidePlatforms}>Ok</span>
             </div>
           </div>
         </div>

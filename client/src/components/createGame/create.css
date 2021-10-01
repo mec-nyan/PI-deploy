@@ -347,3 +347,9 @@ input[type=checkbox]:checked+label
   cursor: pointer;
   background-color: #892CA0;
 }
+
+.errorMessage 
+{
+  color: tomato;
+  height: 24px;
+}
