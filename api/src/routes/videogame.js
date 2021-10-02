@@ -42,12 +42,13 @@ router.get('/:id', async function(req, res) {
     if (game) {
       //console.log(game);
       //return;
-      let {name, description, released, rating, genres, platforms } = game;
+      let {name, description, released, rating, image, genres, platforms } = game;
       return res.status(200).json({
         name,
         description,
         released,
         rating,
+        image,
         genres: genres.map(g => g.name),
         platforms: platforms.map(p => p.name),
       });
@@ -61,14 +62,15 @@ router.post('/', async function(req, res) {
   // POST /videogame:
   // Recibe los datos recolectados desde el formulario controlado de la ruta de creación de videojuego por body
   // Crea un videojuego en la base de datos
-  let { name, rating, description, released, genres, platforms } = req.body;
+  let { name, rating, image, description, released, genres, platforms } = req.body;
   let game;
   try {
     game = await Videogame.create({
-      name: name,
-      description: description,
-      released: released,
-      rating: rating,
+      name,
+      description,
+      released,
+      rating,
+      image,
     });
 
     await bindGenre(game, genres);
