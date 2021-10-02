@@ -13,6 +13,7 @@ function CreateGame({ genres, getGenres, loading, postGame }) {
     platforms: [],
     name: '',
     nameError: '',
+    image: '',
     ratingError: '',
     releasedError: '',
     descriptionError: '',
@@ -167,6 +168,7 @@ function CreateGame({ genres, getGenres, loading, postGame }) {
       released: state.released,
       rating: state.rating,
       genres: state.genres,
+      image: state.image,
       platforms: state.platforms,
     };
 
@@ -207,6 +209,15 @@ function CreateGame({ genres, getGenres, loading, postGame }) {
           onChange={validate}
         />
         <div className='errorMessage'><span>{state.nameError}</span></div>
+
+        <label htmlFor='image'>Image:</label>
+        <input
+          type='text'
+          name='image'
+          placeholder='image...'
+          value={state.image}
+          onChange={handleInputChange}
+        />
 
         <label htmlFor='released'>Released:</label>
         <input
