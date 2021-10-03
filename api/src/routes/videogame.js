@@ -90,7 +90,7 @@ router.post('/', async function(req, res) {
     name, 
     rating,
     genres,
-    image: null,
+    image,
   };
 
   return res.status(200).json(out);

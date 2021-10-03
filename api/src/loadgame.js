@@ -49,6 +49,7 @@ const games = [
     released: '2021-09-27',
     rating: 4.2 ,
     genres: ['Platformer', 'Arcade', 'Puzzle'],
+    image: "https://media.rawg.io/media/screenshots/f22/f22857f426275f7a09d865a2ad2376b9.jpg",
     platforms: getPlatforms(),
   },
   { 
@@ -57,6 +58,7 @@ const games = [
     released: '15-8-1940',
     rating: 6.2 ,
     genres: ['Card', 'Family'],
+    image: "https://media.rawg.io/media/screenshots/67e/67e73815c84bd38f8d841d9d48ce817a.jpg",
     platforms: getPlatforms(),
   },
   { 
@@ -65,6 +67,7 @@ const games = [
     released: '4-4-1944',
     rating: 3.7 ,
     genres: getGenres(),
+    image:  "https://media.rawg.io/media/games/9fb/9fbf956a16249def7625ab5dc3d09515.jpg",
     platforms: getPlatforms(),
   },
   { 
@@ -73,6 +76,7 @@ const games = [
     released: '15-12-2000',
     rating: 4.1 ,
     genres: getGenres(),
+    image: "https://media.rawg.io/media/games/9c5/9c5bc0b6e67102bc96dcf1ba41509e42.jpg",
     platforms: getPlatforms(),
   },
   { 
@@ -81,6 +85,7 @@ const games = [
     released: '23-5-1998',
     rating: 3.2 ,
     genres: getGenres(),
+    image: "https://media.rawg.io/media/games/f6f/f6f39c5b56413f7f4513b25989a1b747.jpg",
     platforms: getPlatforms(),
   },
   { 
@@ -89,6 +94,7 @@ const games = [
     released: '9-11-2005',
     rating: 2.6 ,
     genres: getGenres(),
+    image: "https://media.rawg.io/media/games/a1c/a1c2aeb81916f5a84aa5dbcb9539fbbf.jpg",
     platforms: getPlatforms(),
   },
   { 
@@ -97,6 +103,7 @@ const games = [
     released: '16-8-2011',
     rating: 3.5 ,
     genres: getGenres(),
+    image: "https://media.rawg.io/media/screenshots/97d/97d6fdf98d19a05a42df7f6478b658b6.jpg",
     platforms: getPlatforms(),
   },
 ];
@@ -110,6 +117,7 @@ async function loadGames() {
         description: g.description,
         released: g.released,
         rating: g.rating,
+        image: g.image,
       });
 
       await bindGenre(game, g.genres);
@@ -118,6 +126,7 @@ async function loadGames() {
 
     } catch (err) {
       console.log('Oooooops');
+      console.log(err);
       return false;
     }
   }
