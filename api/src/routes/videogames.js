@@ -91,12 +91,12 @@ router.get('/', async function(req, res) {
     //>> local first
     try {
       games = await Videogame.findAll({
-        attributes: ['id', 'name', 'description', 'rating'], 
+        attributes: ['id', 'name', 'description', 'image', 'rating'], 
         include: Genre });
       games.forEach( g => {
-        let { id, name, description, rating, genres } = g;
+        let { id, name, description, image, rating, genres } = g;
         genres = genres.map( g => g.name);
-        local.push({ id, name, description, rating, genres });
+        local.push({ id, name, description, image, rating, genres });
       });
     } catch (err) {
       console.log('/videogames?name=... error finding ALL local games');
