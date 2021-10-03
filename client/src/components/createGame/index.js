@@ -14,6 +14,7 @@ function CreateGame({ genres, getGenres, loading, postGame }) {
     name: '',
     nameError: '',
     image: '',
+    loading: false,
     ratingError: '',
     releasedError: '',
     descriptionError: '',
@@ -41,7 +42,7 @@ function CreateGame({ genres, getGenres, loading, postGame }) {
   }
 
   useEffect(() => console.log("Im in create"));
-  //useEffect(() => console.log('GENRES IS: ', genres), []);
+  useEffect(() => console.log("state.images: ", state.image), [state.image]);
   useEffect(function() {
     if (genres.length === 0) {
       getGenres();
@@ -83,7 +84,9 @@ function CreateGame({ genres, getGenres, loading, postGame }) {
       ...state,
       [e.target.name]: e.target.value,
     });
-    //console.log(state[e.target.name]);
+    console.log('NAME: ', e.target.name);
+    console.log('ID: ', e.target.id);
+    console.log('VALUE: ', e.target.value);
   }
 
   function validate(e) {
@@ -142,6 +145,22 @@ function CreateGame({ genres, getGenres, loading, postGame }) {
         ? state.platforms.filter(x => x !== p) 
         : [ ...state.platforms, p ],
     });
+  }
+
+  function addImage(e) {
+    const files = e.target.files;
+    const data = new FormData();
+    data.append('file', files[0]);
+    data.append('upload_preset', 'videogames');
+    setState({ ...state, loading: true });
+    fetch(
+      'https://api.cloudinary.com/v1_1/dbu76tbs6/image/upload',
+      {
+        method: 'POST',
+        body: data,
+      }).then(res => res.json())
+      .then(file => setState({ ...state, image: file.secure_url, loading: false }))
+      .catch(e => console.log(e));
   }
 
   function addGenre() {
@@ -210,15 +229,6 @@ function CreateGame({ genres, getGenres, loading, postGame }) {
         />
         <div className='errorMessage'><span>{state.nameError}</span></div>
 
-        <label htmlFor='image'>Image:</label>
-        <input
-          type='text'
-          name='image'
-          placeholder='image...'
-          value={state.image}
-          onChange={handleInputChange}
-        />
-
         <label htmlFor='released'>Released:</label>
         <input
           type='text'
@@ -250,6 +260,14 @@ function CreateGame({ genres, getGenres, loading, postGame }) {
           rows='6'
         />
         <div className='errorMessage'><span>{state.descriptionError}</span></div>
+
+        <label htmlFor='upload' className='selBtn'>Select image</label>
+        <input
+          id='upload'
+          type='file'
+          name='image'
+          onChange={addImage}
+        />
 
         <span className='selBtn' onClick={showGenres}>Select genre</span>
         <div className={'selectGenre ' + (state.showGenres ? 'selectVisible' : 'selectHidden')}>
@@ -323,7 +341,7 @@ function CreateGame({ genres, getGenres, loading, postGame }) {
           </div>
         </div>
 
-        <input
+        <input className='selBtn'
           type='submit'
           value='Add game'
           onClick={submitPost}
