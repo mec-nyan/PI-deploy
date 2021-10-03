@@ -50,9 +50,9 @@ function MainPage({ loading, games, from, setFrom, orderBy, filterBy, ascending,
   let list;
   //>> choose what we will show
   if (search) {
-    list = searchResult;
+    list = [ ...searchResult ];
   } else {
-    list = games;
+    list = [ ...games ];
   }
 
   //>> Order the array
@@ -71,8 +71,8 @@ function MainPage({ loading, games, from, setFrom, orderBy, filterBy, ascending,
   }
 
   //>> Filter the array
-  console.log('filter: ', filterBy);
-  console.log(list);
+  //console.log('filter: ', filterBy);
+  console.log('LIST: ', list);
   switch (filterBy) {
     case 'None':
       list = list;

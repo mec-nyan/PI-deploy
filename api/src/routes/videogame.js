@@ -11,9 +11,10 @@ const url = 'https://api.rawg.io/api/games';
 
 router.get('/:id', async function(req, res) {
   let { id } = req.params;
+  let game;
   if (id.length < 8) {
     try {
-      let game = await axios.get(`${url}/${id}?key=${KEY}`);
+      game = await axios.get(`${url}/${id}?key=${KEY}`);
       game = game.data;
       if (game.name) {
         let detail = {
