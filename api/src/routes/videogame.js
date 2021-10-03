@@ -68,6 +68,7 @@ router.post('/', async function(req, res) {
   try {
     game = await Videogame.create({
       name,
+      slug: name.toLowerCase(),
       description,
       released,
       rating,

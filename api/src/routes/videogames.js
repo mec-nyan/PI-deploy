@@ -57,7 +57,7 @@ router.get('/', async function(req, res) {
         attributes: ['id', 'name', 'image', 'rating'], 
         include: Genre,
         where: {
-          name: {
+          slug: {
             [Op.substring]: `%${name}%`,
           },
         },

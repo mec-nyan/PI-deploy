@@ -114,6 +114,7 @@ async function loadGames() {
     try {
       let game = await Videogame.create({
         name: g.name,
+        slug: g.name.toLowerCase(),
         description: g.description,
         released: g.released,
         rating: g.rating,
