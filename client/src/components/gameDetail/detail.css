@@ -173,6 +173,7 @@
   .rating
   {
     bottom: 10px;
+    top: auto;
     right: 10px;
     justify-content: flex-end;
   }
@@ -184,5 +185,10 @@
   .description
   {
     margin-top: 20px;
+  }
+  .gameTitle
+  {
+    padding: 10px 20px;
+    font-size: 20px;
   }
 }
