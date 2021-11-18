@@ -9,6 +9,7 @@ import noBg from './img/no_bg.png';
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { getDetails } from '../../actions';
+import Loader from '../mainRoute/loader';
 
 
 
@@ -23,7 +24,7 @@ function GameDetail({ detail, loadingDetails, getDetails }) {
 
   if (loadingDetails) {
     console.log(loadingDetails);
-    return <h1 className='loading'>Loading...</h1>;
+    return <div className='detailLoader'><Loader text='Loading' /></div>
   } else {
     console.log(loadingDetails);
 
