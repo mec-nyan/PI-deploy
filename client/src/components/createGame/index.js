@@ -290,15 +290,17 @@ function CreateGame({ genres, getGenres, loading, postGame }) {
               }
             </div>
             <label htmlFor='otherGenre'>Other:</label>
-            <input
-              type='text'
-              name='otherGenre'
-              placeholder='new genre'
-              size='35'
-              value={state.otherGenre}
-              onChange={handleInputChange}
-            />
-            <span className='add' onClick={addGenre}>Add</span>
+            <div className='inputGroup'>
+              <input
+                type='text'
+                name='otherGenre'
+                placeholder='new genre'
+                size='30'
+                value={state.otherGenre}
+                onChange={handleInputChange}
+              />
+              <span className='add' onClick={addGenre}>Add</span>
+            </div>
             <span className='ok' onClick={hideGenres}>Ok</span>
           </div>
         </div>
@@ -324,7 +326,8 @@ function CreateGame({ genres, getGenres, loading, postGame }) {
               }
             </div>
             <div>
-              <label htmlFor='otherPlatform'>Other</label>
+            <label htmlFor='otherPlatform'>Other</label>
+            <div className='inputGroup'>
               <input
                 type='text'
                 name='otherPlatform'
@@ -334,6 +337,7 @@ function CreateGame({ genres, getGenres, loading, postGame }) {
                 onChange={handleInputChange}
               />
               <span className='add' onClick={addPlatform}>Add</span>
+            </div>
             </div>
             <span className='ok' onClick={hidePlatforms}>Ok</span>
             <div>
