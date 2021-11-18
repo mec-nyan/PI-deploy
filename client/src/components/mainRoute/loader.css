@@ -1,0 +1,74 @@
+.loader 
+{
+  overflow: hidden;
+  width: 50vw;
+  height: 50vw;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.imageCont
+{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 80%;
+  height: 80%;
+  overflow: hidden;
+  position: relative;
+}
+
+.imageCont img
+{
+  width: 90%;
+  height: 90%;
+  position: absolute;
+  top: 5%;
+  left: 3%;
+  opacity: 0.3;
+  animation: 20s slowSpin linear infinite;
+}
+
+.imageCont img:nth-child(2)
+{
+  left: 7%;
+}
+
+.centralText
+{
+  font-size: 35px;
+  opacity: 1;
+  animation: 1500ms slowBlink alternate infinite;
+}
+
+@keyframes slowBlink 
+{
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes slowSpin
+{
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@media screen and (max-width: 750px)
+{
+  .loader 
+  {
+    width: 90vw;
+    height: 90vw;
+  }
+}
