@@ -1,6 +1,9 @@
 import * as constants from '../constants';
 import axios from 'axios';
 
+// local
+// const SERVER = 'http://localhost:3001';
+const SERVER = 'https://pi-backend2.herokuapp.com';
 
 function orderByRating() {
   return { type: constants.ORDER_BY_RATING };
@@ -66,7 +69,7 @@ function getDetails(id) {
   console.log('fetching details');
   return dispatch => {
     dispatch({ type: constants.DETAILS_START });
-    axios.get(`http://localhost:3001/videogame/${id}`)
+    axios.get(`${SERVER}/videogame/${id}`)
       .then(r => r.data)
       .then(d => dispatch({ type: constants.GET_DETAILS, payload: d }))
       .catch(e => console.log(e));
@@ -77,7 +80,7 @@ function getData() {
   console.log('fetching data');
   return dispatch => {
     dispatch(getStart());
-    axios.get(`http://localhost:3001/videogames`)
+    axios.get(`${SERVER}/videogames`)
       .then(r => r.data)
       .then(d => dispatch(getEnd(d)))
       .catch(e => console.log(e));
@@ -88,7 +91,7 @@ function preLoad(id) {
   console.log(`Function preLoad: preloading game [${id}]`);
   return dispatch => {
     dispatch({ type: constants.GET_START });
-    axios.get(`http://localhost:3001/videogame/${id}`)
+    axios.get(`${SERVER}/videogame/${id}`)
       .then(r => r.data)
       .then(d => dispatch({ type: constants.PRELOAD, payload: d }))
       .catch(e => console.log(e));
@@ -99,10 +102,13 @@ function fullPreload() {
   console.log('Full preload from 3001/videogames');
   return dispatch => {
     dispatch({ type: constants.GET_START });
-    axios.get(`http://localhost:3001/videogames`)
+    axios.get(`${SERVER}/videogames`)
       .then(r => r.data)
-      .then(d  => dispatch({ type: constants.FULL_PRELOAD, payload: d }))
-      .catch(() => console.log('axios error in function "fullPreload"'));
+      .then(d  => {
+        dispatch({ type: constants.FULL_PRELOAD, payload: d });
+        console.log('FULL PRELOAD: ', d);
+      })
+      .catch((err) => console.log(`axios error in function "fullPreload": ${err}`));
   }
 }
 
@@ -110,7 +116,7 @@ function postGame(data) {
   console.log('Posting new game');
   return dispatch => {
     dispatch(postStart());
-    axios.post(`http://localhost:3001/videogame`, data)
+    axios.post(`${SERVER}/videogame`, data)
       .then(r => r.data)
       .then(d => dispatch({ type: constants.PRELOAD, payload: d }))
       .then(() => dispatch(postEnd()))
@@ -121,7 +127,7 @@ function postGame(data) {
 function getPlatforms() {
   console.log('Getting platforms');
   return dispatch => {
-    axios.get(`http://localhost:3001/platforms`)
+    axios.get(`${SERVER}/platforms`)
       .then(r => r.data)
       .then(d => dispatch({ type: constants.GET_PLATFORMS, payload: d}))
       .catch(e => console.log('Error in "getPlatforms"', e));
@@ -131,7 +137,7 @@ function getPlatforms() {
 function getGenres() {
   console.log('Getting genres');
   return dispatch => {
-    axios.get(`http://localhost:3001/genres`)
+    axios.get(`${SERVER}/genres`)
       .then(r => r.data)
       .then(d => {
         console.log('DATA IS ', d);
@@ -146,7 +152,7 @@ function findByName(name) {
   console.log('Searching by name');
   return dispatch => {
     dispatch({ type: constants.GET_START });
-    axios.get(`http://localhost:3001/videogames?name=${name}`)
+    axios.get(`${SERVER}/videogames?name=${name}`)
       .then(r => r.data)
       .then(d  => dispatch({ type: constants.FIND_BY_NAME, payload: d }))
       .catch(() => console.log('axios error in function "findByName"'));

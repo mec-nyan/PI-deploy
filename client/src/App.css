@@ -20,25 +20,13 @@ body
   background-image: url('./img/nierAutomata.png');
   background-size: cover;
   background-attachment: fixed;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .content 
 {
   display: flex;
   flex-direction: row;
-}
-
-#logo 
-{
-  height: 90px;
-  margin: 18px;
-  position: absolute;
-  top: 0px;
-  left: 0px;
-  transition: all 400ms;
-}
-
-#logo:hover 
-{
-  transform: scale(1.1, 1.1);
 }

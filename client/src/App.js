@@ -20,10 +20,6 @@ function App() {
       <Route path='/main'>
         <SearchBar />
 
-        <NavLink to='/'>
-          <img id='logo' src={logo} alt='MEC' />
-        </NavLink>
-
         <div className='content'>
           <SideBar />
 

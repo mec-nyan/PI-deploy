@@ -43,3 +43,11 @@
   margin: 20px 30%;
   background-color: #444;
 }
+
+@media screen and (max-width: 960px)
+{
+  .side
+  {
+    display: none;
+  }
+}

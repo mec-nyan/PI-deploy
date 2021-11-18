@@ -6,6 +6,8 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
+import logo from '../../img/logoMecFull.png';
 
 
 function SearchBar({ findByName, reset, search, searchResult, setFrom }) {
@@ -50,6 +52,12 @@ function SearchBar({ findByName, reset, search, searchResult, setFrom }) {
   return (
     <>
       <div className='search'>
+
+        <div className='logoCont'>
+          <NavLink to='/'>
+            <img id='logo' src={logo} alt='MEC' />
+          </NavLink>
+        </div>
 
         <form className='searchForm'>
           <input 

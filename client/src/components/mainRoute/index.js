@@ -110,17 +110,19 @@ function MainPage({ loading, games, from, setFrom, orderBy, filterBy, ascending,
     <div className='main'>
 
       <div className='panel'>
-        <div className='buttons'>
-          <NavLink id='newgame' to='/main/create'>Add new game</NavLink>
+        <div className='buttonCreate'>
+          <NavLink id='newgame' to='/main/create'>
+            <span>Create</span>
+          </NavLink>
         </div>
-        <div className='buttons'>
-          <Selector text='Order by:' options={['a-z', 'rating']} now={orderBy} />
-          <ArrowSelector />
-          <Selector text='Filter by:' options={options} now={filterBy} />
+        <div className='filterPanel'>
+          <Selector className='filterButton' text='Order by:' options={['a-z', 'rating']} now={orderBy} />
+          <ArrowSelector className='filterButton' />
+          <Selector className='filterButton' text='Filter by:' options={options} now={filterBy} />
         </div>
       </div>
 
-      <div className='prevNext'>
+      <div className='prevNexTop prevNext'>
         <button onClick={reset} title='top'>^</button>
         <span>{from + 1} - {from + state.count}</span>
         <button onClick={prev} title='previous'>&lt;</button>

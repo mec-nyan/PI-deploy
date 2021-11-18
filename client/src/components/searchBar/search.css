@@ -1,11 +1,12 @@
 .search 
 {
   margin: 0px;
-  padding: 40px 20px;
+  padding: 0px;
   background-color: transparent;
   color: #ddd;
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
 }
@@ -29,15 +30,19 @@
 
 .searchForm 
 {
-  width: 100%;
-  text-align: right;
+  width: 75%;
+  box-sizing: border-box;
+  /*border: 1px solid blue;*/
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
 }
 
 #isearch 
 {
-  margin: 0px 15px;
+  margin: 0px;
   background-color: #444;
-  width: 50%;;
+  width: 60%;;
   border: none;
   height: 18px;
   font-size: 14px;
@@ -71,7 +76,8 @@
   line-height: 24px;
   text-align: center;
   height: 24px;
-  width: 80px;
+  width: 20%;
+  min-width: 80px;
   border-radius: 17px;
   transition: all 400ms;
   cursor: pointer;
@@ -86,4 +92,38 @@
 {
   background-color: #BC5FD3;
   color: #fff;
+}
+
+.logoCont 
+{
+  width: 25%;
+  /*border: 1px solid yellow;*/
+  box-sizing: border-box;
+  text-align: center;
+}
+
+#logo 
+{
+  height: 90px;
+  margin: 0;
+  transition: all 400ms;
+}
+
+#logo:hover 
+{
+  transform: scale(1.1, 1.1);
+}
+
+@media screen and (max-width: 750px)
+{
+  .logoCont 
+  {
+    width: 100%;
+    margin-top: 20px;
+  }
+  .searchForm
+  {
+    width: 100%;
+    margin-bottom: 20px;
+  }
 }
